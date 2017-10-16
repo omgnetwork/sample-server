@@ -1,0 +1,1 @@
+omisego-loyalty-server
