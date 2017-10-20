@@ -1,0 +1,467 @@
+openapi: 3.0.0
+info:
+  version: "1.0.0"
+  title: OmiseGO Sample app
+  description: This doc describes the API schema needed for a very basic sample app where a user can see a list of products, choose one and buy it using fiat money and/or tokens.
+  contact:
+    name: OmiseGO
+    email: mederic@omise.co
+  license:
+    name: License To define
+    url: 'https://omg.omise.co/'
+tags:
+  - name: Session
+    description: "Register / Login"
+  - name: User
+    description: ""
+  - name: Product
+    description: ""
+paths:
+  # Endpoint to register a user.
+  /signup:
+    post:
+      tags:
+        - Session
+      summary: Register a new user
+      operationId: signup
+      security:
+        - BasicAuthorizationHeader: []
+      parameters:
+        - $ref: "#/components/parameters/BasicAuthorizationHeader"
+      requestBody:
+        $ref: '#/components/requestBodies/UserBody'
+      responses:
+        '200':
+          $ref: "#/components/responses/AuthenticationTokenResponse"
+        '500':
+          $ref: "#/components/responses/ServerError"
+  # Endpoint to login a user.
+  /login:
+    post:
+      tags:
+        - Session
+      summary: Login an existing user
+      operationId: login
+      security:
+        - BasicAuthorizationHeader: []
+      parameters:
+        - $ref: "#/components/parameters/BasicAuthorizationHeader"
+      requestBody:
+        $ref: '#/components/requestBodies/CredentialBody'
+      responses:
+        '200':
+          $ref: "#/components/responses/AuthenticationTokenResponse"
+        '500':
+          $ref: "#/components/responses/ServerError"
+  # Endpoint to get an exising user from its authentication_token (get my user)
+  /me.get:
+    post:
+      tags:
+        - User
+      summary: Get the user corresponding to the provided authentication token.
+      operationId: me_get
+      security:
+        - AuthenticatedAuthorizationHeader: []
+      parameters:
+        - $ref: "#/components/parameters/AuthenticatedAuthorizationHeader"
+      responses:
+        '200':
+          $ref: "#/components/responses/UserResponse"
+        '500':
+          $ref: "#/components/responses/ServerError"
+  # Endpoint to get the list of products
+  /products.get:
+    post:
+      tags:
+        - Product
+      summary: Get the list of available products
+      operationId: products_get
+      security:
+        - BasicAuthorizationHeader: []
+      parameters:
+        - $ref: "#/components/parameters/BasicAuthorizationHeader"
+      responses:
+        '200':
+          $ref: "#/components/responses/ProductsResponse"
+        '500':
+          $ref: "#/components/responses/ServerError"
+  # Endpoint to buy a product
+  /product.buy:
+    post:
+      tags:
+        - Product
+      summary: Buy a specific product
+      operationId: product_buy
+      security:
+        - AuthenticatedAuthorizationHeader: []
+      parameters:
+        - $ref: "#/components/parameters/AuthenticatedAuthorizationHeader"
+      requestBody:
+        $ref: '#/components/requestBodies/BuyBody'
+      responses:
+        '200':
+          $ref: "#/components/responses/EmptyResponse"
+        '500':
+          $ref: "#/components/responses/ServerError"
+components:
+  schemas:
+    # Schema for a user object
+    UserSchema:
+      type: object
+      properties:
+        object:
+          type: string
+        id:
+          type: string
+        email:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+      required:
+        - object
+        - id
+        - email
+        - first_name
+        - last_name
+      example:
+        object: "user"
+        id: "cec34607-0761-4a59-8357-18963e42a1aa"
+        email: "john.doe@example.com"
+        first_name: "John"
+        last_name: "Doe"
+    # Schema for an error object
+    ErrorSchema:
+      type: object
+      properties:
+        object:
+          type: string
+        code:
+          type: string
+        message:
+          type: string
+      required:
+        - object
+        - code
+        - message
+      example:
+        object: error
+        code: server:internal_server_error
+        message: Server error
+    # Schema for a list object
+    UnpaginatedListSchema:
+      type: object
+      properties:
+        object:
+          type: string
+        data:
+          type: array
+      required:
+        - object
+        - data
+      example:
+        object: list
+    # Schema for success response body
+    BaseResponseSchema:
+      type: object
+      properties:
+        version:
+          type: string
+        success:
+          type: boolean
+        data:
+          type: object
+      required:
+        - version
+        - success
+        - data
+      example:
+        version: "1"
+        success: true
+        data: {}
+    # Schema for error response body
+    ErrorResponseSchema:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponseSchema'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/ErrorSchema'
+          required:
+            - data
+          example:
+            success: false
+            data:
+              object: error
+              code: server:internal_server_error
+              message: Server error
+    # Schema for user response body
+    UserResponseSchema:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponseSchema'
+      - type: object
+        properties:
+          data:
+            type: object
+            $ref: '#/components/schemas/UserSchema'
+        required:
+          - data
+        example:
+          data:
+            object: "user"
+            id: "cec34607-0761-4a59-8357-18963e42a1aa"
+            email: "john.doe@example.com"
+            first_name: "John"
+            last_name: "Doe"
+    # Schema for authentication token object
+    AuthenticationTokenSchema:
+      type: object
+      properties:
+        object:
+          type: string
+        authentication_token:
+          type: string
+        expires_at:
+          type: string
+          format: date
+      required:
+        - object
+        - authentication_token
+        - expires_at
+    # Schema for individual balance object
+    ProductSchema:
+      type: object
+      properties:
+        object:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        display_price:
+          type: string
+        price:
+          type: integer
+      required:
+        - object
+        - id
+        - name
+        - description
+        - display_price
+        - price
+      example:
+        object: "product"
+        id: "cjw211-23poka-qwd813-mcnqyqw"
+        name: "Big burger"
+        description: "A very big burger"
+        display_price: "$9.89"
+        price: 989
+    # Schema for authentication token body response
+    AuthenticationTokenResponse:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponseSchema'
+      - type: object
+        properties:
+          data:
+            type: object
+            $ref: '#/components/schemas/AuthenticationTokenSchema'
+        required:
+          - data
+        example:
+          data:
+            object: "authentication_token"
+            authentication_token: "azJRj09l7jvR8KhTqUs3"
+            expires_at: "2020-10-10 00:00:00+00:00"
+    # Schema for single product body response
+    ProductResponse:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponseSchema'
+      - type: object
+        properties:
+          data:
+            type: object
+            $ref: '#/components/schemas/ProductSchema'
+        required:
+          - data
+        example:
+          data:
+            object: "product"
+            id: "cjw211-23poka-qwd813-mcnqyqw"
+            name: "Big burger"
+            description: "A very big burger"
+            display_price: "$9.89"
+            price: 989
+    # Schema for products response body
+    ProductsResponse:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponseSchema'
+      - type: object
+        properties:
+          data:
+            type: object
+            allOf:
+              - $ref: '#/components/schemas/UnpaginatedListSchema'
+              - type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ProductSchema'
+        required:
+        - data
+        example:
+          data:
+            object: list
+            data:
+            - object: "product"
+              id: "cjw211-23poka-qwd813-mcnqyqw"
+              name: "Big burger"
+              description: "A very big burger"
+              display_price: "$9.89"
+              price: 989
+            - object: "product"
+              id: "cjw211-23poka-qwd813-mcnq123"
+              name: "Big burrito"
+              description: "A very big burrito"
+              display_price: "$7.23"
+              price: 723
+  requestBodies:
+    # Body for a create / update user request
+    UserBody:
+      description: User object that needs to be created
+      required: true
+      content:
+        application/vnd.omisego.v1+json:
+          schema:
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+              first_name:
+                type: string
+              last_name:
+                type: string
+            required:
+              - email
+              - password
+              - first_name
+              - last_name
+            example:
+              first_name: "John"
+              last_name: "Doe"
+              email: "john.doe@example.com"
+              password: "password"
+    # Body containing the user credentials
+    CredentialBody:
+      description: The user credentials
+      required: true
+      content:
+        application/vnd.omisego.v1+json:
+          schema:
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+            required:
+              - email
+              - password
+            example:
+              email: "john.doe@example.com"
+              password: "password"
+    # Body containing the buy product payload
+    BuyBody:
+      description: The buy payload
+      required: true
+      content:
+        application/vnd.omisego.v1+json:
+          schema:
+            properties:
+              token_symbol:
+                type: string
+              token_value:
+                type: integer
+              product_id:
+                type: string
+            required:
+              - token_symbol
+              - tokens
+              - product_id
+            example:
+              token_symbol: "MNT"
+              token_value: 530000000000000
+              product_id: "wijf-fbancomw-dqwjudb"
+  parameters:
+    # Headers
+    BasicAuthorizationHeader:
+      in: header
+      name: Authorization
+      description: OMGBasic Base64(api_key)
+      required: true
+      schema:
+        type: string
+    AuthenticatedAuthorizationHeader:
+      in: header
+      name: Authorization
+      description: OMGAuthenticated Base64(api_key:authentication_token)
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    # Authentication for server calls
+    ServerAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+    # Authentication for client calls
+    client_auth:
+      type: apiKey
+      in: header
+      name: Authorization
+  responses:
+    # Empty
+    EmptyResponse:
+      description: Empty response
+      content:
+        application/vnd.omisego.v1+json:
+          schema:
+            $ref: '#/components/schemas/BaseResponseSchema'
+    # Response when there was a server error (should never happen)
+    ServerError:
+      description: Server error
+      content:
+        application/vnd.omisego.v1+json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponseSchema'
+    # User response
+    UserResponse:
+      description: User response
+      content:
+        application/vnd.omisego.v1+json:
+          schema:
+            $ref: '#/components/schemas/UserResponseSchema'
+    # Authentication token response
+    AuthenticationTokenResponse:
+      description: Authentication token response
+      content:
+        application/vnd.omisego.v1+json:
+          schema:
+            $ref: '#/components/schemas/AuthenticationTokenResponse'
+    # Product response
+    ProductResponse:
+      description: Product response
+      content:
+        application/vnd.omisego.v1+json:
+          schema:
+            $ref: '#/components/schemas/ProductResponse'
+    # Products response
+    ProductsResponse:
+      description: Products response
+      content:
+        application/vnd.omisego.v1+json:
+          schema:
+            $ref: '#/components/schemas/ProductsResponse'
