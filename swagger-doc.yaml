@@ -139,16 +139,20 @@ components:
           type: string
         code:
           type: string
-        message:
+        description:
           type: string
+        messages:
+          type: object
       required:
         - object
         - code
-        - message
+        - description
+        - messages
       example:
-        object: error
-        code: server:internal_server_error
-        message: Server error
+        object: "error"
+        code: "server:internal_server_error"
+        description: "Server error"
+        messages: {"error_key": "error_reason"}
     # Schema for a list object
     UnpaginatedListSchema:
       type: object
@@ -193,9 +197,10 @@ components:
           example:
             success: false
             data:
-              object: error
-              code: server:internal_server_error
-              message: Server error
+              object: "error"
+              code: "server:internal_server_error"
+              description: "Server error"
+              messages: {"error_key": "error_reason"}
     # Schema for user response body
     UserResponseSchema:
       allOf:
@@ -222,13 +227,12 @@ components:
           type: string
         authentication_token:
           type: string
-        expires_at:
+        omisego_authentication_token:
           type: string
-          format: date
       required:
         - object
         - authentication_token
-        - expires_at
+        - omisego_authentication_token
     # Schema for individual balance object
     ProductSchema:
       type: object
@@ -241,7 +245,7 @@ components:
           type: string
         description:
           type: string
-        display_price:
+        image_url:
           type: string
         price:
           type: integer
@@ -250,15 +254,15 @@ components:
         - id
         - name
         - description
-        - display_price
+        - image_url
         - price
       example:
         object: "product"
         id: "cjw211-23poka-qwd813-mcnqyqw"
-        name: "Big burger"
-        description: "A very big burger"
-        display_price: "$9.89"
-        price: 989
+        name: "OmiseGO t-shirt"
+        description: "An awesome t-shirt"
+        image_url: "https://image.ibb.co/cyfcfm/tshirt_sample_3x.png"
+        price: 20000
     # Schema for authentication token body response
     AuthenticationTokenResponse:
       allOf:
@@ -274,7 +278,7 @@ components:
           data:
             object: "authentication_token"
             authentication_token: "azJRj09l7jvR8KhTqUs3"
-            expires_at: "2020-10-10 00:00:00+00:00"
+            omisego_authentication_token: "iGn2Ol0ZmyVa1YbmL"
     # Schema for single product body response
     ProductResponse:
       allOf:
@@ -292,7 +296,7 @@ components:
             id: "cjw211-23poka-qwd813-mcnqyqw"
             name: "Big burger"
             description: "A very big burger"
-            display_price: "$9.89"
+            image_url: "https://image.ibb.co/cyfcfm/tshirt_sample_3x.png"
             price: 989
     # Schema for products response body
     ProductsResponse:
@@ -318,16 +322,16 @@ components:
             data:
             - object: "product"
               id: "cjw211-23poka-qwd813-mcnqyqw"
-              name: "Big burger"
-              description: "A very big burger"
-              display_price: "$9.89"
-              price: 989
+              name: "OmiseGO t-shirt"
+              description: "An awesome t-shirt"
+              image_url: "https://image.ibb.co/cyfcfm/tshirt_sample_3x.png"
+              price: 20000
             - object: "product"
               id: "cjw211-23poka-qwd813-mcnq123"
-              name: "Big burrito"
-              description: "A very big burrito"
-              display_price: "$7.23"
-              price: 723
+              name: "OmiseGO t-shirt 2"
+              description: "An other awesome t-shirt"
+              image_url: "https://image.ibb.co/cyfcfm/tshirt_sample_3x.png"
+              price: 30000
   requestBodies:
     # Body for a create / update user request
     UserBody:
