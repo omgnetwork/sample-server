@@ -6,7 +6,7 @@ class ProductSerializer
   def as_json(*)
     {
       object: 'product',
-      id: @product.id,
+      id: @product.id.to_s,
       name: @product.name,
       description: @product.description,
       image_url: @product.image_url || '',

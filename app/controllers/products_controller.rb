@@ -1,9 +1,9 @@
-class ProductsController < ActionController::API
-  def index
-    products = Product.all.map do |product|
-      ProductSerializer.new(product)
-    end
+class ProductsController < ApplicationController
+  before_action :authenticate_client
 
-    render json: ResponseSerializer.new('1', true, products)
+  def index
+    serialize(Product.all.map do |product|
+      ProductSerializer.new(product)
+    end)
   end
 end

@@ -10,9 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_171_107_041_041) do
+ActiveRecord::Schema.define(version: 20_171_107_112_500) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
+
+  create_table 'access_tokens', force: :cascade do |t|
+    t.string 'token_digest'
+    t.bigint 'user_id'
+    t.bigint 'api_key_id'
+    t.datetime 'accessed_at'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['api_key_id'], name: 'index_access_tokens_on_api_key_id'
+    t.index %w[user_id api_key_id], name: 'index_access_tokens_on_user_id_and_api_key_id',
+                                    unique: true
+    t.index ['user_id'], name: 'index_access_tokens_on_user_id'
+  end
+
+  create_table 'api_keys', force: :cascade do |t|
+    t.string 'key'
+    t.boolean 'active', default: true
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['key'], name: 'index_api_keys_on_key'
+  end
 
   create_table 'products', force: :cascade do |t|
     t.string 'name', null: false
@@ -23,4 +44,35 @@ ActiveRecord::Schema.define(version: 20_171_107_041_041) do
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
   end
+
+  create_table 'purchases', force: :cascade do |t|
+    t.bigint 'product_id'
+    t.bigint 'user_id'
+    t.integer 'price_satangs', default: 0, null: false
+    t.string 'price_currency', default: 'THB', null: false
+    t.string 'idempotency_key'
+    t.integer 'status', default: 0
+    t.text 'error', default: '{}', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['product_id'], name: 'index_purchases_on_product_id'
+    t.index %w[user_id product_id], name: 'index_purchases_on_user_id_and_product_id'
+    t.index ['user_id'], name: 'index_purchases_on_user_id'
+  end
+
+  create_table 'users', force: :cascade do |t|
+    t.string 'email'
+    t.string 'password_digest'
+    t.string 'first_name'
+    t.string 'last_name'
+    t.datetime 'last_logged_in_at'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['email'], name: 'index_users_on_email'
+  end
+
+  add_foreign_key 'access_tokens', 'api_keys', on_delete: :cascade
+  add_foreign_key 'access_tokens', 'users', on_delete: :cascade
+  add_foreign_key 'purchases', 'products'
+  add_foreign_key 'purchases', 'users'
 end
