@@ -9,10 +9,6 @@ class AccessToken < ApplicationRecord
     BCrypt::Password.new(token_digest).is_password?(unencrypted_token)
   end
 
-  def expired?
-    created_at + 14.days < Time.now
-  end
-
   # We generate the token before hashing it and saving it.
   # We also return it so we can send it to the client.
   def generate_token

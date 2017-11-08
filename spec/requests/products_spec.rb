@@ -4,7 +4,7 @@ require 'rails_helper'
 RSpec.describe 'products', type: :request do
   let(:api_key) { create(:api_key) }
   let(:keys) { Base64.encode64("#{api_key.id}:#{api_key.key}") }
-  let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGBasic #{keys}" } }
+  let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGShop #{keys}" } }
 
   let(:tshirt_1) { create(:product, name: 'OmiseGO T-Shirt 1') }
   let(:tshirt_2) { create(:product, name: 'OmiseGO T-Shirt 2') }

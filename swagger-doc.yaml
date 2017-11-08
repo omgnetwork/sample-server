@@ -404,14 +404,14 @@ components:
     BasicAuthorizationHeader:
       in: header
       name: Authorization
-      description: OMGBasic Base64(api_key)
+      description: OMGShop Base64(api_key_id:api_key)
       required: true
       schema:
         type: string
     AuthenticatedAuthorizationHeader:
       in: header
       name: Authorization
-      description: OMGAuthenticated Base64(api_key:authentication_token)
+      description: OMGShop Base64(api_key_id:api_key:user_id:authentication_token)
       required: true
       schema:
         type: string

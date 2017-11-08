@@ -1,8 +1,7 @@
 module Authentication
   extend ActiveSupport::Concern
 
-  AUTH_SCHEME = 'OMGAuthenticated'.freeze
-  BASIC_SCHEME = 'OMGBasic'.freeze
+  AUTH_SCHEME = 'OMGShop'.freeze
 
   included do
     before_action :validate_auth_scheme
@@ -12,8 +11,7 @@ module Authentication
   private
 
   def validate_auth_scheme
-    valid = [AUTH_SCHEME, BASIC_SCHEME].include?(authenticator.scheme)
-    handle_error(:invalid_auth_scheme) unless valid
+    handle_error(:invalid_auth_scheme) unless AUTH_SCHEME == authenticator.scheme
   end
 
   def authenticate_client

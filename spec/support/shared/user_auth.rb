@@ -9,7 +9,7 @@ RSpec.shared_examples 'user auth' do |path|
         tokens_string = "#{user.id}:fake"
         Base64.encode64("#{keys_string}:#{tokens_string}")
       end
-      let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGAuthenticated #{keys}" } }
+      let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGShop #{keys}" } }
 
       before { post path, headers: headers }
 

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'users', type: :request do
   let(:api_key) { create(:api_key) }
   let(:keys) { Base64.encode64("#{api_key.id}:#{api_key.key}") }
-  let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGBasic #{keys}" } }
+  let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGShop #{keys}" } }
   let(:tshirt_1) { create(:product, name: 'OmiseGO T-Shirt 1') }
 
   describe '/api/product.buy' do
@@ -22,7 +22,7 @@ RSpec.describe 'users', type: :request do
         tokens_string = "#{user.id}:#{access_token}"
         Base64.encode64("#{keys_string}:#{tokens_string}")
       end
-      let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGAuthenticated #{keys}" } }
+      let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGShop #{keys}" } }
       let(:params) do
         {
           product_id: tshirt_1.id,

@@ -40,7 +40,7 @@ module ErrorHandler
 
   def handle_error(code)
     error = ErrorSerializer.new(ERRORS[code][:code], ERRORS[code][:description])
-    render json: ResponseSerializer.new('1', false, error)
+    serialize(error, false)
   end
 
   def handle_error_with_messages(code, messages)

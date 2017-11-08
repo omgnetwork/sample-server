@@ -24,7 +24,7 @@ RSpec.shared_examples 'client auth' do |path|
     context 'with an invalid API Key ID' do
       let(:api_key) { create(:api_key) }
       let(:keys) { Base64.encode64("1337:#{api_key.key}") }
-      let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGBasic #{keys}" } }
+      let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGShop #{keys}" } }
 
       before { post path, headers: headers }
 
@@ -49,7 +49,7 @@ RSpec.shared_examples 'client auth' do |path|
     context 'with an invalid API Key' do
       let(:api_key) { create(:api_key) }
       let(:keys) { Base64.encode64("#{api_key.id}:fake") }
-      let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGBasic #{keys}" } }
+      let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGShop #{keys}" } }
 
       before { post path, headers: headers }
 

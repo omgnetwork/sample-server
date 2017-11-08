@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'users', type: :request do
   let(:api_key) { create(:api_key) }
   let(:keys) { Base64.encode64("#{api_key.id}:#{api_key.key}") }
-  let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGBasic #{keys}" } }
+  let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGShop #{keys}" } }
 
   describe '/api/me.get' do
     include_examples 'client auth', '/api/me.get'
@@ -22,7 +22,7 @@ RSpec.describe 'users', type: :request do
         tokens_string = "#{user.id}:#{access_token}"
         Base64.encode64("#{keys_string}:#{tokens_string}")
       end
-      let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGAuthenticated #{keys}" } }
+      let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGShop #{keys}" } }
 
       before { post '/api/me.get', headers: headers }
 
@@ -50,7 +50,7 @@ RSpec.describe 'users', type: :request do
     context 'user authenticated' do
       let(:api_key) { create(:api_key) }
       let(:keys) { Base64.encode64("#{api_key.id}:#{api_key.key}") }
-      let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGAuthenticated #{keys}" } }
+      let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGShop #{keys}" } }
       let(:params) do
         {
           email: 'john@doe.com',
@@ -98,7 +98,7 @@ RSpec.describe 'users', type: :request do
         tokens_string = "#{user.id}:#{access_token}"
         Base64.encode64("#{keys_string}:#{tokens_string}")
       end
-      let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGAuthenticated #{keys}" } }
+      let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGShop #{keys}" } }
       let(:params) do
         {
           first_name: 'Jane'
@@ -145,7 +145,7 @@ RSpec.describe 'users', type: :request do
         tokens_string = "#{user.id}:#{access_token}"
         Base64.encode64("#{keys_string}:#{tokens_string}")
       end
-      let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGAuthenticated #{keys}" } }
+      let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGShop #{keys}" } }
       let(:params) do
         {
           first_name: 'Jane'
