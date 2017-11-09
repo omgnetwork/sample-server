@@ -10,6 +10,7 @@ gem 'money-rails'
 gem 'pg'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.4'
+gem 'omisego', git: 'ssh://git@phabricator.omisego.io/source/sdk-ruby.git'
 
 gem 'rubocop', require: false
 

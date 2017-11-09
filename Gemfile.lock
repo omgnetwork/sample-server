@@ -1,3 +1,10 @@
+GIT
+  remote: ssh://git@phabricator.omisego.io/source/sdk-ruby.git
+  revision: 3adafc86847d97e0b22cba56076ce8efcfee49c4
+  specs:
+    omisego (0.1.0)
+      faraday (~> 0.13.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -57,6 +64,8 @@ GEM
     factory_bot_rails (4.8.2)
       factory_bot (~> 4.8.2)
       railties (>= 3.0.0)
+    faraday (0.13.1)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -85,6 +94,7 @@ GEM
       monetize (~> 1.4.0)
       money (~> 6.7)
       railties (>= 3.0)
+    multipart-post (2.0.0)
     nio4r (2.1.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
@@ -192,6 +202,7 @@ DEPENDENCIES
   factory_bot_rails
   listen (>= 3.0.5, < 3.2)
   money-rails
+  omisego!
   pg
   puma (~> 3.7)
   rails (~> 5.1.4)

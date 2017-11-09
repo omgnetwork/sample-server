@@ -14,5 +14,5 @@ Rails.application.routes.draw do
     post '/me.delete', to: 'users#destroy'
   end
 
-  root to: 'products#index'
+  root to: 'status#index'
 end
