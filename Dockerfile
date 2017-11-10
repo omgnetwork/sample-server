@@ -1,8 +1,11 @@
-FROM ruby:2.4-slim
+FROM ruby:2.4-slim-stretch
 
 RUN apt-get update && apt-get install -y \
   build-essential \
-  nodejs
+  curl \
+  git \
+  nodejs \
+  postgresql-server-dev-9.6
 
 COPY . /app
 WORKDIR /app
