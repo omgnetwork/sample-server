@@ -5,6 +5,10 @@ RSpec.describe 'users', type: :request do
   let(:keys) { Base64.encode64("#{api_key.id}:#{api_key.key}") }
   let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGShop #{keys}" } }
 
+  before do
+    allow_any_instance_of(User).to receive(:provider_user_id).and_return('OMGShop/test')
+  end
+
   describe '/api/me.get' do
     include_examples 'client auth', '/api/me.get'
     include_examples 'user auth', '/api/me.get'
@@ -53,13 +57,18 @@ RSpec.describe 'users', type: :request do
       let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGShop #{keys}" } }
       let(:params) do
         {
-          email: 'john@doe.com',
+          email: 'john@example.com',
           password: 'password',
           first_name: 'john',
           last_name: 'doe'
         }
       end
-      before { post '/api/signup', headers: headers, params: params }
+
+      before do
+        VCR.use_cassette('user/authenticated/signup') do
+          post '/api/signup', headers: headers, params: params
+        end
+      end
 
       it "receives a json with the 'success' root key" do
         expect(json_body['success']).to eq true
@@ -73,10 +82,11 @@ RSpec.describe 'users', type: :request do
         expect(json_body['data']['object']).to eq('authentication_token')
         expect(json_body['data']['user_id']).to eq(User.last.id.to_s)
         expect(json_body['data']['authentication_token']).not_to eq nil
+        expect(json_body['data']['omisego_authentication_token']).not_to eq nil
       end
 
       it 'creates the user in db' do
-        expect(User.last.email).to eq 'john@doe.com'
+        expect(User.last.email).to eq 'john@example.com'
       end
     end
   end
@@ -104,6 +114,7 @@ RSpec.describe 'users', type: :request do
           first_name: 'Jane'
         }
       end
+
       before { post '/api/me.update', headers: headers, params: params }
 
       it "receives a json with the 'success' root key" do

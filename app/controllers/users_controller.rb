@@ -6,11 +6,20 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(user_params)
+    signup = Signup.new(user_params, api_key)
+    user = signup.call
 
-    if user.save
-      access_token, token = TokenGenerator.new(user, api_key).generate
-      serialize(AccessTokenSerializer.new(access_token, token))
+    if user
+      login = Login.new(user, api_key)
+
+      if (token = login.call)
+        data = AccessTokenSerializer.new(login.access_token, token)
+        serialize(data)
+      else
+        handle_error_with_description(:invalid_parameter, token.error)
+      end
+    elsif signup.error
+      handle_error_with_description(:invalid_parameter, signup.error)
     else
       handle_error(:invalid_parameter)
     end

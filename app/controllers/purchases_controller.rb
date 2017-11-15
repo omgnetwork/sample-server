@@ -2,27 +2,27 @@ class PurchasesController < ApplicationController
   before_action :authenticate_user
 
   def create
-    purchase.user = current_user
+    purchaser = Purchaser.new(current_user, purchase_params)
 
-    if purchase.save
-      purchase.confirm!
+    if purchaser.call
+      purchaser.purchase.confirm!
       serialize({})
     else
-      handle_error(:invalid_parameter)
+      error = purchaser.error
+      failed_purchase(purchaser.purchase, error)
+      handle_error_with_description(:invalid_parameter, error.to_s)
     end
   end
 
   private
 
-  def purchase
-    @purchase ||= if params[:id]
-                    Purchase.find_by!(id: params[:id])
-                  else
-                    Purchase.new(purchase_params)
-                  end
+  def failed_purchase(purchase, error)
+    purchase.error!(code: error.code,
+                    description: error.description,
+                    messages: error.messages)
   end
 
   def purchase_params
-    params.permit(:product_id, :idempotency_key)
+    params.permit(:product_id, :token_symbol, :token_value, :idempotency_key)
   end
 end

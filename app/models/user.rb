@@ -11,6 +11,10 @@ class User < ApplicationRecord
 
   validates :password, presence: true, length: { minimum: 8 }, if: :new_record?
 
+  def provider_user_id
+    "OMGShop/#{id}"
+  end
+
   private
 
   def downcase_email

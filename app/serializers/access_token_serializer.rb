@@ -8,7 +8,8 @@ class AccessTokenSerializer
     {
       object: 'authentication_token',
       user_id: @access_token.user.id.to_s,
-      authentication_token: @token
+      authentication_token: @token,
+      omisego_authentication_token: @access_token.omisego_authentication_token
     }
   end
 end

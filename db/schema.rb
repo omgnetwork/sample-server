@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_171_107_112_500) do
+ActiveRecord::Schema.define(version: 20_171_113_092_134) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20_171_107_112_500) do
     t.datetime 'accessed_at'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.string 'omisego_authentication_token'
     t.index ['api_key_id'], name: 'index_access_tokens_on_api_key_id'
     t.index %w[user_id api_key_id], name: 'index_access_tokens_on_user_id_and_api_key_id',
                                     unique: true
@@ -55,6 +56,8 @@ ActiveRecord::Schema.define(version: 20_171_107_112_500) do
     t.text 'error', default: '{}', null: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.integer 'token_value'
+    t.string 'token_symbol'
     t.index ['product_id'], name: 'index_purchases_on_product_id'
     t.index %w[user_id product_id], name: 'index_purchases_on_user_id_and_product_id'
     t.index ['user_id'], name: 'index_purchases_on_user_id'

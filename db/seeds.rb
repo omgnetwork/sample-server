@@ -10,17 +10,20 @@
 Product.create!(
   name: 'OmiseGO T-Shirt',
   description: 'An amazing t-shirt!',
-  price: Money.new(1990, 'THB')
+  price: Money.new(98_500, 'THB'),
+  image_url: 'https://image.ibb.co/cyfcfm/tshirt_sample_3x.png'
 )
 
 Product.create!(
   name: 'OmiseGO Hoodie',
   description: 'An amazing hoodie!',
-  price: Money.new(3990, 'THB')
+  price: Money.new(15_500, 'THB'),
+  image_url: 'https://image.ibb.co/cyfcfm/tshirt_sample_3x.png'
 )
 
 Product.create!(
   name: 'OmiseGO Hat',
   description: 'An amazing hat!',
-  price: Money.new(990, 'THB')
+  price: Money.new(45_000, 'THB'),
+  image_url: 'https://image.ibb.co/cyfcfm/tshirt_sample_3x.png'
 )

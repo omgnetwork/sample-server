@@ -5,16 +5,22 @@ RSpec.describe 'access tokens', type: :request do
   let(:keys) { Base64.encode64("#{api_key.id}:#{api_key.key}") }
   let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGShop #{keys}" } }
 
+  before do
+    allow_any_instance_of(User).to receive(:provider_user_id).and_return('OMGShop/test')
+  end
+
   describe '/api/login' do
     include_examples 'client auth', '/api/login'
 
     context 'authenticated' do
       context 'invalid credentials' do
         before do
-          post '/api/login', headers: headers, params: {
-            email: 'john@doe.com',
-            password: 'password'
-          }
+          VCR.use_cassette('access_token/authenticated/login/invalid') do
+            post '/api/login', headers: headers, params: {
+              email: 'john@doe.com',
+              password: 'password'
+            }
+          end
         end
 
         it "receives a json with the 'success' root key" do
@@ -41,7 +47,9 @@ RSpec.describe 'access tokens', type: :request do
 
         before do
           User.create(params)
-          post '/api/login', headers: headers, params: params
+          VCR.use_cassette('user/authenticated/login/valid') do
+            post '/api/login', headers: headers, params: params
+          end
         end
 
         it "receives a json with the 'success' root key" do
@@ -60,6 +68,7 @@ RSpec.describe 'access tokens', type: :request do
           expect(json_body['data']['object']).to eq('authentication_token')
           expect(json_body['data']['user_id']).to eq(User.last.id.to_s)
           expect(json_body['data']['authentication_token']).not_to eq nil
+          expect(json_body['data']['omisego_authentication_token']).not_to eq nil
         end
       end
     end

@@ -2,8 +2,10 @@ class ProductsController < ApplicationController
   before_action :authenticate_client
 
   def index
-    serialize(Product.all.map do |product|
+    products = Product.all.map do |product|
       ProductSerializer.new(product)
-    end)
+    end
+
+    serialize(ListSerializer.new(products))
   end
 end

@@ -5,8 +5,14 @@ class AccessTokensController < ApplicationController
     user = User.find_by(email: login_params[:email])
 
     if user && user.authenticate(login_params[:password])
-      access_token, token = TokenGenerator.new(user, api_key).generate
-      serialize(AccessTokenSerializer.new(access_token, token))
+      login = Login.new(user, api_key)
+
+      if (token = login.call)
+        data = AccessTokenSerializer.new(login.access_token, token)
+        serialize(data)
+      else
+        handle_error(:invalid_parameter)
+      end
     else
       handle_error(:invalid_credentials)
     end

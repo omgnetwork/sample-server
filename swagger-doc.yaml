@@ -225,12 +225,15 @@ components:
       properties:
         object:
           type: string
+        user_id:
+          type: string
         authentication_token:
           type: string
         omisego_authentication_token:
           type: string
       required:
         - object
+        - user_id
         - authentication_token
         - omisego_authentication_token
     # Schema for individual balance object
@@ -277,6 +280,7 @@ components:
         example:
           data:
             object: "authentication_token"
+            user_id: "1"
             authentication_token: "azJRj09l7jvR8KhTqUs3"
             omisego_authentication_token: "iGn2Ol0ZmyVa1YbmL"
     # Schema for single product body response

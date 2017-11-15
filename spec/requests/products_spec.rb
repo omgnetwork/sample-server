@@ -11,6 +11,10 @@ RSpec.describe 'products', type: :request do
   let(:tshirt_3) { create(:product, name: 'OmiseGO T-Shirt 3') }
   let(:tshirts) { [tshirt_1, tshirt_2, tshirt_3] }
 
+  before do
+    allow_any_instance_of(User).to receive(:provider_user_id).and_return('OMGShop/test')
+  end
+
   describe 'GET /api/products.get' do
     include_examples 'client auth', '/api/products.get'
 
@@ -32,16 +36,14 @@ RSpec.describe 'products', type: :request do
         expect(json_body['version']).to eq '1'
       end
 
-      it "receives a json with the 'data' root key" do
-        expect(json_body['data']).to_not be nil
-      end
-
-      it 'receives all 3 products' do
-        expect(json_body['data'].size).to eq 3
+      it 'receives all 3 products in a list' do
+        expect(json_body['data']['object']).to eq 'list'
+        expect(json_body['data']['data']).to_not be nil
+        expect(json_body['data']['data'].size).to eq 3
       end
 
       it 'receives 3 formatted products' do
-        expect(json_body['data']).to eq [
+        expect(json_body['data']['data']).to eq [
           {
             'object' => 'product',
             'id' => tshirt_1.id.to_s,

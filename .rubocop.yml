@@ -4,3 +4,7 @@ Documentation:
   Enabled: false
 Metrics/BlockLength:
   Enabled: false
+Metrics/MethodLength:
+  Max: 23
+Metrics/AbcSize:
+  Enabled: false

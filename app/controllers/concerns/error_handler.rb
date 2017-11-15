@@ -43,6 +43,11 @@ module ErrorHandler
     serialize(error, false)
   end
 
+  def handle_error_with_description(code, description)
+    error = ErrorSerializer.new(ERRORS[code][:code], description)
+    serialize(error, false)
+  end
+
   def handle_error_with_messages(code, messages)
     error = ErrorSerializer.new(ERRORS[code][:code],
                                 ERRORS[code][:description],
