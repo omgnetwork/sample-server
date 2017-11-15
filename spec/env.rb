@@ -1,7 +1,6 @@
-ENV['ACCESS_KEY'] = 'replace_with_access_key'
-ENV['SECRET_KEY'] = 'replace_with_secret_key'
-ENV['KUBERA_URL'] = 'https://example.com'
-
+ENV['OMISEGO_ACCESS_KEY'] = 'replace_with_access_key'
+ENV['OMISEGO_SECRET_KEY'] = 'replace_with_secret_key'
+ENV['OMISEGO_WALLET_URL'] = 'https://example.com'
 ENV['PROVIDER_USER_ID'] = 'user12345678'
 
 # Base64 Encoded:
