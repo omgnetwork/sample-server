@@ -23,6 +23,6 @@ class PurchasesController < ApplicationController
   end
 
   def purchase_params
-    params.permit(:product_id, :token_symbol, :token_value, :idempotency_key)
+    params.permit(:product_id, :token_id, :token_value, :idempotency_key)
   end
 end

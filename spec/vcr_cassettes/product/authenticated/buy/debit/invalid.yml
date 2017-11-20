@@ -5,7 +5,7 @@ http_interactions:
     uri: https://example.com/user.debit_balance
     body:
       encoding: UTF-8
-      string: '{"provider_user_id":"OMGShop/test","symbol":"OMG","amount":100000000,"metadata":{}}'
+      string: '{"provider_user_id":"OMGShop/test","token_id":"OMG:123","amount":100000000,"metadata":{}}'
     headers:
       User-Agent:
       - Faraday v0.13.1
@@ -42,7 +42,7 @@ http_interactions:
       encoding: ASCII-8BIT
       string: '{"version":"1","success":false,"data":{"object":"error","messages":null,"description":"The
         specified balance (c0d9591e-9d54-4f76-b7aa-666b4666bcc8) does not contain
-        enough funds. Available: 3780 OMG - Attempted debit: 100000000 OMG","code":"client:insufficient_funds"}}'
+        enough funds. Available: 3780 OMG:123 - Attempted debit: 100000000 OMG:123","code":"client:insufficient_funds"}}'
     http_version:
   recorded_at: Tue, 14 Nov 2017 08:37:49 GMT
 recorded_with: VCR 3.0.3

@@ -389,18 +389,18 @@ components:
         application/vnd.omisego.v1+json:
           schema:
             properties:
-              token_symbol:
+              token_id:
                 type: string
               token_value:
                 type: integer
               product_id:
                 type: string
             required:
-              - token_symbol
+              - token_id
               - tokens
               - product_id
             example:
-              token_symbol: "MNT"
+              token_id: "MNT:477aea48-b508-4292-a725-0282b130318b"
               token_value: 530000000000000
               product_id: "wijf-fbancomw-dqwjudb"
   parameters:

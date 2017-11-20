@@ -1,8 +1,8 @@
 GIT
   remote: ssh://git@phabricator.omisego.io/source/sdk-ruby.git
-  revision: fd756db0bf20721e302ee85c4dfcfaaca0e72059
+  revision: 5fe22addbed60299691d0dfad3bff8749cc43f52
   specs:
-    omisego (0.1.0)
+    omisego (0.1.1)
       faraday (~> 0.13.1)
 
 GEM
@@ -202,7 +202,7 @@ DEPENDENCIES
   factory_bot_rails
   listen (>= 3.0.5, < 3.2)
   money-rails
-  omisego (= 0.1.0)!
+  omisego (= 0.1.1)!
   pg
   puma (~> 3.7)
   rails (~> 5.1.4)

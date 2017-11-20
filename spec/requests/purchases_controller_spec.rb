@@ -100,8 +100,8 @@ RSpec.describe 'users', type: :request do
               'code' => 'client:invalid_parameter',
               'description' => 'client:insufficient_funds - The specified balance ' \
                                '(c0d9591e-9d54-4f76-b7aa-666b4666bcc8) does not contain ' \
-                               'enough funds. Available: 3780 OMG - Attempted debit: ' \
-                               '100000000 OMG',
+                               'enough funds. Available: 3780 OMG:123 - Attempted debit: ' \
+                               '100000000 OMG:123',
               'messages' => nil
             )
           end

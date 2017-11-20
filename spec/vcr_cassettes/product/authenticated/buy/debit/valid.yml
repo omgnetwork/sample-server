@@ -5,7 +5,7 @@ http_interactions:
     uri: https://example.com/user.debit_balance
     body:
       encoding: UTF-8
-      string: '{"provider_user_id":"OMGShop/test","symbol":"OMG","amount":10,"metadata":{}}'
+      string: '{"provider_user_id":"OMGShop/test","token_id":"OMG:123","amount":10,"metadata":{}}'
     headers:
       User-Agent:
       - Faraday v0.13.1
@@ -40,7 +40,7 @@ http_interactions:
       - max-age=15724800; includeSubDomains;
     body:
       encoding: UTF-8
-      string: '{"version":"1","success":true,"data":{"object":"list","data":[{"object":"address","balances":[{"object":"balance","minted_token":{"symbol":"OMG","subunit_to_unit":100,"object":"minted_token","name":"OmiseGO"},"amount":3780}],"address":"c0d9591e-9d54-4f76-b7aa-666b4666bcc8"}]}}'
-    http_version: 
+      string: '{"version":"1","success":true,"data":{"object":"list","data":[{"object":"address","balances":[{"object":"balance","minted_token":{"id":"OMG:123","symbol":"OMG","subunit_to_unit":100,"object":"minted_token","name":"OmiseGO"},"amount":3780}],"address":"c0d9591e-9d54-4f76-b7aa-666b4666bcc8"}]}}'
+    http_version:
   recorded_at: Tue, 14 Nov 2017 08:37:11 GMT
 recorded_with: VCR 3.0.3
