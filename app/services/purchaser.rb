@@ -3,7 +3,7 @@ class Purchaser
     @user = user
     @purchase_params = purchase_params
     @value = (@purchase_params[:token_value] || 0).to_i
-    @token_id = @purchase_params[:token_id]
+    @token_id = @purchase_params.delete(:token_id)
   end
 
   def call
