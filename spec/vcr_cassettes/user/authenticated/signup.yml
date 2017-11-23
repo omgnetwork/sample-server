@@ -23,26 +23,22 @@ http_interactions:
       message: OK
     headers:
       Server:
-      - nginx/1.13.5
+      - Cowboy
       Date:
-      - Tue, 14 Nov 2017 08:24:37 GMT
-      Content-Type:
-      - application/vnd.omisego.v1+json; charset=utf-8
+      - Wed, 22 Nov 2017 10:27:18 GMT
       Content-Length:
       - '241'
-      Connection:
-      - keep-alive
+      Content-Type:
+      - application/vnd.omisego.v1+json; charset=utf-8
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - n0p9pcbgihietr5gmup33vqbgqkhrt8g
-      Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains;
+      - 9jo7dd8v0iabcb1egjtjfojuej4u00dd
     body:
       encoding: UTF-8
-      string: '{"version":"1","success":true,"data":{"username":"john@example.com","provider_user_id":"OMGShop/test","object":"user","metadata":{"last_name":"doe","first_name":"john","email":"john@example.com"},"id":"e3664f20-4389-4d15-bdea-e7f853911729"}}'
+      string: '{"version":"1","success":true,"data":{"username":"john@example.com","provider_user_id":"OMGShop/test","object":"user","metadata":{"last_name":"doe","first_name":"john","email":"john@example.com"},"id":"01c54e63-6350-40a8-84d1-0ddc3a47960b"}}'
     http_version: 
-  recorded_at: Tue, 14 Nov 2017 08:24:36 GMT
+  recorded_at: Wed, 22 Nov 2017 10:27:18 GMT
 - request:
     method: post
     uri: https://example.com/login
@@ -66,24 +62,20 @@ http_interactions:
       message: OK
     headers:
       Server:
-      - nginx/1.13.5
+      - Cowboy
       Date:
-      - Tue, 14 Nov 2017 08:24:38 GMT
-      Content-Type:
-      - application/vnd.omisego.v1+json; charset=utf-8
+      - Wed, 22 Nov 2017 10:27:18 GMT
       Content-Length:
       - '140'
-      Connection:
-      - keep-alive
+      Content-Type:
+      - application/vnd.omisego.v1+json; charset=utf-8
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - hihotooeu2c6mc88n76489ldfh1as35k
-      Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains;
+      - akpoqn25gdb1sjtluto2plocl5ckped7
     body:
       encoding: UTF-8
-      string: '{"version":"1","success":true,"data":{"object":"authentication_token","authentication_token":"jiGRU3G9EuHz3BdiJIbBFiZhnz-S_U0-fEDTxEouWkg"}}'
+      string: '{"version":"1","success":true,"data":{"object":"authentication_token","authentication_token":"wcMQI0iEf10z759Z_Z2twPNVDJi41FMyyhh17ZmcAwg"}}'
     http_version: 
-  recorded_at: Tue, 14 Nov 2017 08:24:36 GMT
+  recorded_at: Wed, 22 Nov 2017 10:27:18 GMT
 recorded_with: VCR 3.0.3

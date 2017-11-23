@@ -15,6 +15,8 @@ http_interactions:
       - application/vnd.omisego.v1+json
       Content-Type:
       - application/vnd.omisego.v1+json
+      Idempotency-Token:
+      - 254afff3-f6b6-43d7-ad99-3a711bed4402
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
@@ -23,26 +25,22 @@ http_interactions:
       message: OK
     headers:
       Server:
-      - nginx/1.13.5
+      - Cowboy
       Date:
-      - Tue, 14 Nov 2017 08:37:51 GMT
+      - Wed, 22 Nov 2017 10:29:55 GMT
+      Content-Length:
+      - '274'
       Content-Type:
       - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - u5tradsj55j55gksnp2cri31eofv58j4
-      Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains;
+      - uu8sgrs60kmrgolsh8ikor9kll8nlru0
     body:
-      encoding: ASCII-8BIT
+      encoding: UTF-8
       string: '{"version":"1","success":false,"data":{"object":"error","messages":null,"description":"The
-        specified balance (c0d9591e-9d54-4f76-b7aa-666b4666bcc8) does not contain
-        enough funds. Available: 3780 OMG:123 - Attempted debit: 100000000 OMG:123","code":"client:insufficient_funds"}}'
-    http_version:
-  recorded_at: Tue, 14 Nov 2017 08:37:49 GMT
+        specified balance (989c0e7c-bb6f-4058-a80f-23fc2ae64780) does not contain
+        enough funds. Available: 0 OMG:123 - Attempted debit: 100000000 OMG:123","code":"client:insufficient_funds"}}'
+    http_version: 
+  recorded_at: Wed, 22 Nov 2017 10:29:56 GMT
 recorded_with: VCR 3.0.3

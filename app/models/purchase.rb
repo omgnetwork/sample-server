@@ -11,6 +11,7 @@ class Purchase < ApplicationRecord
   validates :price_satangs, presence: true
   validates :product, presence: true
   validates :user, presence: true
+  validates :idempotency_token, presence: true
 
   def confirm!
     confirmed!

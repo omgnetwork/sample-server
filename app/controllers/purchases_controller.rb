@@ -2,7 +2,8 @@ class PurchasesController < ApplicationController
   before_action :authenticate_user
 
   def create
-    purchaser = Purchaser.new(current_user, purchase_params)
+    idempotency_token = request.headers['Idempotency-Token']
+    purchaser = Purchaser.new(current_user, purchase_params, idempotency_token)
 
     if purchaser.call
       purchaser.purchase.confirm!
@@ -23,6 +24,6 @@ class PurchasesController < ApplicationController
   end
 
   def purchase_params
-    params.permit(:product_id, :token_id, :token_value, :idempotency_key)
+    params.permit(:product_id, :token_id, :token_value)
   end
 end

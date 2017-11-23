@@ -1,9 +1,10 @@
 class Purchaser
-  def initialize(user, purchase_params)
+  def initialize(user, purchase_params, idempotency_token)
     @user = user
     @purchase_params = purchase_params
     @value = (@purchase_params[:token_value] || 0).to_i
     @token_id = @purchase_params.delete(:token_id)
+    @purchase_params[:idempotency_token] = idempotency_token || SecureRandom.uuid
   end
 
   def call
@@ -30,7 +31,8 @@ class Purchaser
     @credit ||= OmiseGO::Balance.credit(
       provider_user_id: @user.provider_user_id,
       token_id: @token_id,
-      amount: purchase.price.cents
+      amount: purchase.price.cents,
+      idempotency_token: purchase.idempotency_token
     )
   end
 
@@ -38,7 +40,8 @@ class Purchaser
     @debit ||= OmiseGO::Balance.debit(
       provider_user_id: @user.provider_user_id,
       token_id: @token_id,
-      amount: @value
+      amount: @value,
+      idempotency_token: purchase.idempotency_token
     )
   end
 end
