@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_171_122_101_127) do
+ActiveRecord::Schema.define(version: 20_171_125_120_919) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20_171_122_101_127) do
     t.text 'error', default: '{}', null: false
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
-    t.integer 'token_value'
+    t.decimal 'token_value', precision: 81
     t.string 'token_symbol'
     t.string 'idempotency_token', null: false
     t.index ['idempotency_token'], name: 'index_purchases_on_idempotency_token', unique: true

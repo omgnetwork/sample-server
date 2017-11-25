@@ -55,38 +55,62 @@ RSpec.describe 'users', type: :request do
       let(:api_key) { create(:api_key) }
       let(:keys) { Base64.encode64("#{api_key.id}:#{api_key.key}") }
       let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGShop #{keys}" } }
-      let(:params) do
-        {
-          email: 'john@example.com',
-          password: 'password',
-          first_name: 'john',
-          last_name: 'doe'
-        }
-      end
 
-      before do
-        VCR.use_cassette('user/authenticated/signup') do
-          post '/api/signup', headers: headers, params: params
+      context 'with user creation failing in the Wallet API' do
+        let(:params) do
+          {
+            email: 'john@example.com',
+            password: 'password',
+            first_name: 'john',
+            last_name: 'doe'
+          }
+        end
+
+        before do
+          VCR.use_cassette('user/authenticated/failed_signup') do
+            post '/api/signup', headers: headers, params: params
+          end
+        end
+
+        it 'deletes the user from db' do
+          expect(User.count).to eq 0
         end
       end
 
-      it "receives a json with the 'success' root key" do
-        expect(json_body['success']).to eq true
-      end
+      context 'with user creation succeeding in the Wallet API' do
+        let(:params) do
+          {
+            email: 'john@example.com',
+            password: 'password',
+            first_name: 'john',
+            last_name: 'doe'
+          }
+        end
 
-      it "receives a json with the 'version' root key" do
-        expect(json_body['version']).to eq '1'
-      end
+        before do
+          VCR.use_cassette('user/authenticated/signup') do
+            post '/api/signup', headers: headers, params: params
+          end
+        end
 
-      it "receives a json with the 'data' root key" do
-        expect(json_body['data']['object']).to eq('authentication_token')
-        expect(json_body['data']['user_id']).to eq(User.last.id.to_s)
-        expect(json_body['data']['authentication_token']).not_to eq nil
-        expect(json_body['data']['omisego_authentication_token']).not_to eq nil
-      end
+        it "receives a json with the 'success' root key" do
+          expect(json_body['success']).to eq true
+        end
 
-      it 'creates the user in db' do
-        expect(User.last.email).to eq 'john@example.com'
+        it "receives a json with the 'version' root key" do
+          expect(json_body['version']).to eq '1'
+        end
+
+        it "receives a json with the 'data' root key" do
+          expect(json_body['data']['object']).to eq('authentication_token')
+          expect(json_body['data']['user_id']).to eq(User.last.id.to_s)
+          expect(json_body['data']['authentication_token']).not_to eq nil
+          expect(json_body['data']['omisego_authentication_token']).not_to eq nil
+        end
+
+        it 'creates the user in db' do
+          expect(User.last.email).to eq 'john@example.com'
+        end
       end
     end
   end

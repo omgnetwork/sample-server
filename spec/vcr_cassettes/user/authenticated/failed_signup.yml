@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://example.com/login
+    uri: https://example.com/user.create
     body:
       encoding: UTF-8
-      string: '{"provider_user_id":"OMGShop/test"}'
+      string: '{"provider_user_id":"OMGShop/test","username":"john@example.com","metadata":{"email":"john@example.com","first_name":"john","last_name":"doe"}}'
     headers:
       User-Agent:
       - Faraday v0.13.1
@@ -25,22 +25,23 @@ http_interactions:
       Server:
       - nginx/1.13.5
       Date:
-      - Sat, 25 Nov 2017 11:54:34 GMT
+      - Sat, 25 Nov 2017 12:34:55 GMT
       Content-Type:
-      - application/vnd.omisego.v1+json; charset=utf-8
+      - application/json; charset=utf-8
       Content-Length:
-      - '140'
+      - '201'
       Connection:
       - keep-alive
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - cs3l00nj5c857blvv5nin8v1u8b08ciu
+      - td2dsn41l2tvt98cedjlmo38i3bqp19h
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains;
     body:
       encoding: UTF-8
-      string: '{"version":"1","success":true,"data":{"object":"authentication_token","authentication_token":"pi_F3lM926VHuNUItFVoNsE_XjRBHdM0eD6Vx-Ie_N4"}}'
-    http_version: 
-  recorded_at: Sat, 25 Nov 2017 11:54:27 GMT
+      string: '{"version":"1","success":false,"data":{"object":"error","messages":{"username":[null]},"description":"Invalid
+        parameter provided. `username` has already been taken.","code":"client:invalid_parameter"}}'
+    http_version:
+  recorded_at: Sat, 25 Nov 2017 12:34:55 GMT
 recorded_with: VCR 3.0.3

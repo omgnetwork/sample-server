@@ -6,7 +6,10 @@ class Signup
 
   def call
     return false unless user.save
-    return false if omisego_user.error?
+    if omisego_user.error?
+      user.destroy
+      return false
+    end
 
     user
   end

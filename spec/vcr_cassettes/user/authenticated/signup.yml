@@ -23,22 +23,26 @@ http_interactions:
       message: OK
     headers:
       Server:
-      - Cowboy
+      - nginx/1.13.5
       Date:
-      - Wed, 22 Nov 2017 10:27:18 GMT
-      Content-Length:
-      - '241'
+      - Sat, 25 Nov 2017 11:53:53 GMT
       Content-Type:
       - application/vnd.omisego.v1+json; charset=utf-8
+      Content-Length:
+      - '241'
+      Connection:
+      - keep-alive
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 9jo7dd8v0iabcb1egjtjfojuej4u00dd
+      - tq803nu0bh7rt1rbhvllcpbb2l6790dk
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains;
     body:
       encoding: UTF-8
-      string: '{"version":"1","success":true,"data":{"username":"john@example.com","provider_user_id":"OMGShop/test","object":"user","metadata":{"last_name":"doe","first_name":"john","email":"john@example.com"},"id":"01c54e63-6350-40a8-84d1-0ddc3a47960b"}}'
+      string: '{"version":"1","success":true,"data":{"username":"john@example.com","provider_user_id":"OMGShop/test","object":"user","metadata":{"last_name":"doe","first_name":"john","email":"john@example.com"},"id":"fdd1dafa-a2ef-4db9-98a3-1243913c7690"}}'
     http_version: 
-  recorded_at: Wed, 22 Nov 2017 10:27:18 GMT
+  recorded_at: Sat, 25 Nov 2017 11:53:46 GMT
 - request:
     method: post
     uri: https://example.com/login
@@ -62,20 +66,24 @@ http_interactions:
       message: OK
     headers:
       Server:
-      - Cowboy
+      - nginx/1.13.5
       Date:
-      - Wed, 22 Nov 2017 10:27:18 GMT
-      Content-Length:
-      - '140'
+      - Sat, 25 Nov 2017 11:53:54 GMT
       Content-Type:
       - application/vnd.omisego.v1+json; charset=utf-8
+      Content-Length:
+      - '140'
+      Connection:
+      - keep-alive
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - akpoqn25gdb1sjtluto2plocl5ckped7
+      - 3eeqb7raqb6v6fehnl4siscg2v6tmfhf
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains;
     body:
       encoding: UTF-8
-      string: '{"version":"1","success":true,"data":{"object":"authentication_token","authentication_token":"wcMQI0iEf10z759Z_Z2twPNVDJi41FMyyhh17ZmcAwg"}}'
+      string: '{"version":"1","success":true,"data":{"object":"authentication_token","authentication_token":"4uBos_eQTHf7QqjHmKFSlq6nOjXLPTKQK3w5dF5KDLQ"}}'
     http_version: 
-  recorded_at: Wed, 22 Nov 2017 10:27:18 GMT
+  recorded_at: Sat, 25 Nov 2017 11:53:47 GMT
 recorded_with: VCR 3.0.3
