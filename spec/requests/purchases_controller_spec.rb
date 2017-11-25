@@ -33,13 +33,13 @@ RSpec.describe 'users', type: :request do
           let(:headers) do
             {
               'HTTP_AUTHORIZATION' => "OMGShop #{keys}",
-              'IDEMPOTENCY-TOKEN' => '254afff3-f6b6-43d7-ad99-3a711bed4401'
+              'IDEMPOTENCY-TOKEN' => SecureRandom.uuid
             }
           end
           let(:params) do
             {
               product_id: tshirt_1.id,
-              token_id: 'ETH:115db088-d7f7-4d2d-898d-64a42ce633bb',
+              token_id: 'ETH:1f48738e-6336-45e5-9695-306b9b53e459',
               token_value: 0
             }
           end
@@ -68,7 +68,6 @@ RSpec.describe 'users', type: :request do
             expect(purchase).not_to eq nil
             expect(purchase.status).to eq 'confirmed'
             expect(purchase.price).to eq Money.new(1900, 'THB')
-            expect(purchase.idempotency_token).to eq '254afff3-f6b6-43d7-ad99-3a711bed4401'
             expect(purchase.product_id).to eq tshirt_1.id
           end
         end
@@ -79,14 +78,14 @@ RSpec.describe 'users', type: :request do
           let(:headers) do
             {
               'HTTP_AUTHORIZATION' => "OMGShop #{keys}",
-              'IDEMPOTENCY-TOKEN' => '254afff3-f6b6-43d7-ad99-3a711bed4402'
+              'IDEMPOTENCY-TOKEN' => SecureRandom.uuid
             }
           end
           let(:params) do
             {
               product_id: tshirt_1.id,
-              token_id: 'OMG:123',
-              token_value: 100_000_000
+              token_id: 'OMG:789c6cd5-9f04-4daa-af51-1cbf043b828d',
+              token_value: 10000000000000000000
             }
           end
 
@@ -109,9 +108,9 @@ RSpec.describe 'users', type: :request do
               'object' => 'error',
               'code' => 'client:invalid_parameter',
               'description' => 'client:insufficient_funds - The specified balance ' \
-                               '(989c0e7c-bb6f-4058-a80f-23fc2ae64780) does not contain ' \
-                               'enough funds. Available: 0 OMG:123 - Attempted debit: ' \
-                               '100000000 OMG:123',
+                               '(ca342b4b-864f-49dd-8287-a92a0b69c665) does not contain ' \
+                               'enough funds. Available: 0 OMG:789c6cd5-9f04-4daa-af51-1cbf043b828d - Attempted debit: ' \
+                               '10000000000000000000 OMG:789c6cd5-9f04-4daa-af51-1cbf043b828d',
               'messages' => nil
             )
           end
@@ -122,7 +121,6 @@ RSpec.describe 'users', type: :request do
             expect(purchase).not_to eq nil
             expect(purchase.status).to eq 'rejected'
             expect(purchase.price).to eq Money.new(1900, 'THB')
-            expect(purchase.idempotency_token).to eq '254afff3-f6b6-43d7-ad99-3a711bed4402'
             expect(purchase.product_id).to eq tshirt_1.id
           end
         end
@@ -131,13 +129,13 @@ RSpec.describe 'users', type: :request do
           let(:headers) do
             {
               'HTTP_AUTHORIZATION' => "OMGShop #{keys}",
-              'IDEMPOTENCY-TOKEN' => '254afff3-f6b6-43d7-ad99-3a711bed4403'
+              'IDEMPOTENCY-TOKEN' => SecureRandom.uuid
             }
           end
           let(:params) do
             {
               product_id: tshirt_1.id,
-              token_id: 'ETH:115db088-d7f7-4d2d-898d-64a42ce633bb',
+              token_id: 'ETH:1f48738e-6336-45e5-9695-306b9b53e459',
               token_value: 10
             }
           end
@@ -166,7 +164,6 @@ RSpec.describe 'users', type: :request do
             expect(purchase).not_to eq nil
             expect(purchase.status).to eq 'confirmed'
             expect(purchase.price).to eq Money.new(1900, 'THB')
-            expect(purchase.idempotency_token).to eq '254afff3-f6b6-43d7-ad99-3a711bed4403'
             expect(purchase.product_id).to eq tshirt_1.id
           end
         end

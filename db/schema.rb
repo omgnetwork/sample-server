@@ -10,75 +10,75 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_171_122_101_127) do
+ActiveRecord::Schema.define(version: 20171125120919) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'access_tokens', force: :cascade do |t|
-    t.string 'token_digest'
-    t.bigint 'user_id'
-    t.bigint 'api_key_id'
-    t.datetime 'accessed_at'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'omisego_authentication_token'
-    t.index ['api_key_id'], name: 'index_access_tokens_on_api_key_id'
-    t.index %w[user_id api_key_id], name: 'index_access_tokens_on_user_id_and_api_key_id',
-                                    unique: true
-    t.index ['user_id'], name: 'index_access_tokens_on_user_id'
+  create_table "access_tokens", force: :cascade do |t|
+    t.string "token_digest"
+    t.bigint "user_id"
+    t.bigint "api_key_id"
+    t.datetime "accessed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "omisego_authentication_token"
+    t.index ["api_key_id"], name: "index_access_tokens_on_api_key_id"
+    t.index ["user_id", "api_key_id"], name: "index_access_tokens_on_user_id_and_api_key_id", unique: true
+    t.index ["user_id"], name: "index_access_tokens_on_user_id"
   end
 
-  create_table 'api_keys', force: :cascade do |t|
-    t.string 'key'
-    t.boolean 'active', default: true
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['key'], name: 'index_api_keys_on_key'
+  create_table "api_keys", force: :cascade do |t|
+    t.string "key"
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["key"], name: "index_api_keys_on_key"
   end
 
-  create_table 'products', force: :cascade do |t|
-    t.string 'name', null: false
-    t.text 'description'
-    t.string 'image_url'
-    t.integer 'price_satangs', default: 0, null: false
-    t.string 'price_currency', default: 'THB', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "products", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.string "image_url"
+    t.integer "price_satangs", default: 0, null: false
+    t.string "price_currency", default: "THB", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'purchases', force: :cascade do |t|
-    t.bigint 'product_id'
-    t.bigint 'user_id'
-    t.integer 'price_satangs', default: 0, null: false
-    t.string 'price_currency', default: 'THB', null: false
-    t.integer 'status', default: 0
-    t.text 'error', default: '{}', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.integer 'token_value'
-    t.string 'token_symbol'
-    t.string 'idempotency_token', null: false
-    t.index ['idempotency_token'], name: 'index_purchases_on_idempotency_token', unique: true
-    t.index ['product_id'], name: 'index_purchases_on_product_id'
-    t.index %w[user_id product_id], name: 'index_purchases_on_user_id_and_product_id'
-    t.index ['user_id'], name: 'index_purchases_on_user_id'
+  create_table "purchases", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "user_id"
+    t.integer "price_satangs", default: 0, null: false
+    t.string "price_currency", default: "THB", null: false
+    t.integer "status", default: 0
+    t.text "error", default: "{}", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.decimal "token_value", precision: 81
+    t.string "token_symbol"
+    t.string "idempotency_token", null: false
+    t.index ["idempotency_token"], name: "index_purchases_on_idempotency_token", unique: true
+    t.index ["product_id"], name: "index_purchases_on_product_id"
+    t.index ["user_id", "product_id"], name: "index_purchases_on_user_id_and_product_id"
+    t.index ["user_id"], name: "index_purchases_on_user_id"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'email'
-    t.string 'password_digest'
-    t.string 'first_name'
-    t.string 'last_name'
-    t.datetime 'last_logged_in_at'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'uuid'
-    t.index ['email'], name: 'index_users_on_email'
-    t.index ['uuid'], name: 'index_users_on_uuid', unique: true
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "last_logged_in_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "uuid"
+    t.index ["email"], name: "index_users_on_email"
+    t.index ["uuid"], name: "index_users_on_uuid", unique: true
   end
 
-  add_foreign_key 'access_tokens', 'api_keys', on_delete: :cascade
-  add_foreign_key 'access_tokens', 'users', on_delete: :cascade
-  add_foreign_key 'purchases', 'products'
-  add_foreign_key 'purchases', 'users'
+  add_foreign_key "access_tokens", "api_keys", on_delete: :cascade
+  add_foreign_key "access_tokens", "users", on_delete: :cascade
+  add_foreign_key "purchases", "products"
+  add_foreign_key "purchases", "users"
 end

@@ -2,10 +2,53 @@
 http_interactions:
 - request:
     method: post
+    uri: https://example.com/get_settings
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Authorization:
+      - OMGServer cmVwbGFjZV93aXRoX2FjY2Vzc19rZXk6cmVwbGFjZV93aXRoX3NlY3JldF9rZXk=
+      Accept:
+      - application/vnd.omisego.v1+json
+      Content-Type:
+      - application/vnd.omisego.v1+json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.13.5
+      Date:
+      - Sat, 25 Nov 2017 12:23:42 GMT
+      Content-Type:
+      - application/vnd.omisego.v1+json; charset=utf-8
+      Content-Length:
+      - '730'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 10iml3339iq1am6h8kk0uvkq40o6sgs2
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains;
+    body:
+      encoding: UTF-8
+      string: '{"version":"1","success":true,"data":{"object":"setting","minted_tokens":[{"symbol":"OMG","subunit_to_unit":10000,"object":"minted_token","name":"OmiseGO","id":"OMG:789c6cd5-9f04-4daa-af51-1cbf043b828d"},{"symbol":"KNC","subunit_to_unit":1000,"object":"minted_token","name":"Kyber","id":"KNC:b306764f-509e-4251-8a5d-b9656e992779"},{"symbol":"BTC","subunit_to_unit":10000,"object":"minted_token","name":"Bitcoin","id":"BTC:d82f123b-36f9-4651-ad40-0989a535cc75"},{"symbol":"MNT","subunit_to_unit":100,"object":"minted_token","name":"Mint","id":"MNT:58e008bf-9025-450d-bd73-bdb9859ee0e3"},{"symbol":"ETH","subunit_to_unit":1000000000000000000,"object":"minted_token","name":"Ether","id":"ETH:1f48738e-6336-45e5-9695-306b9b53e459"}]}}'
+    http_version: 
+  recorded_at: Sat, 25 Nov 2017 12:23:35 GMT
+- request:
+    method: post
     uri: https://example.com/user.credit_balance
     body:
       encoding: UTF-8
-      string: '{"provider_user_id":"OMGShop/test","token_id":"ETH:115db088-d7f7-4d2d-898d-64a42ce633bb","amount":1900,"metadata":{}}'
+      string: '{"provider_user_id":"OMGShop/test","token_id":"ETH:1f48738e-6336-45e5-9695-306b9b53e459","amount":19000000000000000000,"metadata":{}}'
     headers:
       User-Agent:
       - Faraday v0.13.1
@@ -16,7 +59,7 @@ http_interactions:
       Content-Type:
       - application/vnd.omisego.v1+json
       Idempotency-Token:
-      - 254afff3-f6b6-43d7-ad99-3a711bed4401
+      - 254afff3-f6b6-43d7-ad99-3a711bed4421
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
@@ -25,20 +68,24 @@ http_interactions:
       message: OK
     headers:
       Server:
-      - Cowboy
+      - nginx/1.13.5
       Date:
-      - Wed, 22 Nov 2017 10:30:00 GMT
-      Content-Length:
-      - '339'
+      - Sat, 25 Nov 2017 12:23:43 GMT
       Content-Type:
       - application/vnd.omisego.v1+json; charset=utf-8
+      Content-Length:
+      - '355'
+      Connection:
+      - keep-alive
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 1fv3u3akgvs8rmocpeoi6o7958sno59k
+      - m8h84hldvq5ii4db4kh7a6vru04d01ks
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains;
     body:
       encoding: UTF-8
-      string: '{"version":"1","success":true,"data":{"object":"list","data":[{"object":"address","balances":[{"object":"balance","minted_token":{"symbol":"ETH","subunit_to_unit":1000000000000000000,"object":"minted_token","name":"Ether","id":"ETH:115db088-d7f7-4d2d-898d-64a42ce633bb"},"amount":3800}],"address":"989c0e7c-bb6f-4058-a80f-23fc2ae64780"}]}}'
+      string: '{"version":"1","success":true,"data":{"object":"list","data":[{"object":"address","balances":[{"object":"balance","minted_token":{"symbol":"ETH","subunit_to_unit":1000000000000000000,"object":"minted_token","name":"Ether","id":"ETH:1f48738e-6336-45e5-9695-306b9b53e459"},"amount":19000000000000000000}],"address":"ca342b4b-864f-49dd-8287-a92a0b69c665"}]}}'
     http_version: 
-  recorded_at: Wed, 22 Nov 2017 10:30:00 GMT
+  recorded_at: Sat, 25 Nov 2017 12:23:36 GMT
 recorded_with: VCR 3.0.3

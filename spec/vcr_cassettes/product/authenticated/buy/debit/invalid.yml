@@ -2,10 +2,53 @@
 http_interactions:
 - request:
     method: post
+    uri: https://example.com/get_settings
+    body:
+      encoding: UTF-8
+      string: "{}"
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Authorization:
+      - OMGServer cmVwbGFjZV93aXRoX2FjY2Vzc19rZXk6cmVwbGFjZV93aXRoX3NlY3JldF9rZXk=
+      Accept:
+      - application/vnd.omisego.v1+json
+      Content-Type:
+      - application/vnd.omisego.v1+json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.13.5
+      Date:
+      - Sat, 25 Nov 2017 12:29:38 GMT
+      Content-Type:
+      - application/vnd.omisego.v1+json; charset=utf-8
+      Content-Length:
+      - '730'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - mhfub7o1a3t19mksfctd3pkhb89domet
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains;
+    body:
+      encoding: UTF-8
+      string: '{"version":"1","success":true,"data":{"object":"setting","minted_tokens":[{"symbol":"OMG","subunit_to_unit":10000,"object":"minted_token","name":"OmiseGO","id":"OMG:789c6cd5-9f04-4daa-af51-1cbf043b828d"},{"symbol":"KNC","subunit_to_unit":1000,"object":"minted_token","name":"Kyber","id":"KNC:b306764f-509e-4251-8a5d-b9656e992779"},{"symbol":"BTC","subunit_to_unit":10000,"object":"minted_token","name":"Bitcoin","id":"BTC:d82f123b-36f9-4651-ad40-0989a535cc75"},{"symbol":"MNT","subunit_to_unit":100,"object":"minted_token","name":"Mint","id":"MNT:58e008bf-9025-450d-bd73-bdb9859ee0e3"},{"symbol":"ETH","subunit_to_unit":1000000000000000000,"object":"minted_token","name":"Ether","id":"ETH:1f48738e-6336-45e5-9695-306b9b53e459"}]}}'
+    http_version: 
+  recorded_at: Sat, 25 Nov 2017 12:29:38 GMT
+- request:
+    method: post
     uri: https://example.com/user.debit_balance
     body:
       encoding: UTF-8
-      string: '{"provider_user_id":"OMGShop/test","token_id":"OMG:123","amount":100000000,"metadata":{}}'
+      string: '{"provider_user_id":"OMGShop/test","token_id":"OMG:789c6cd5-9f04-4daa-af51-1cbf043b828d","amount":10000000000000000000,"metadata":{}}'
     headers:
       User-Agent:
       - Faraday v0.13.1
@@ -16,7 +59,7 @@ http_interactions:
       Content-Type:
       - application/vnd.omisego.v1+json
       Idempotency-Token:
-      - 254afff3-f6b6-43d7-ad99-3a711bed4402
+      - 43df7be9-26f8-4466-a550-4c7cd02e85a7
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
@@ -25,22 +68,27 @@ http_interactions:
       message: OK
     headers:
       Server:
-      - Cowboy
+      - nginx/1.13.5
       Date:
-      - Wed, 22 Nov 2017 10:29:55 GMT
-      Content-Length:
-      - '274'
+      - Sat, 25 Nov 2017 12:29:38 GMT
       Content-Type:
       - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - uu8sgrs60kmrgolsh8ikor9kll8nlru0
+      - 8qi0sv22ohf2khaj7ksgvocrg5l2doeu
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains;
     body:
-      encoding: UTF-8
+      encoding: ASCII-8BIT
       string: '{"version":"1","success":false,"data":{"object":"error","messages":null,"description":"The
-        specified balance (989c0e7c-bb6f-4058-a80f-23fc2ae64780) does not contain
-        enough funds. Available: 0 OMG:123 - Attempted debit: 100000000 OMG:123","code":"client:insufficient_funds"}}'
+        specified balance (ca342b4b-864f-49dd-8287-a92a0b69c665) does not contain
+        enough funds. Available: 0 OMG:789c6cd5-9f04-4daa-af51-1cbf043b828d - Attempted
+        debit: 10000000000000000000 OMG:789c6cd5-9f04-4daa-af51-1cbf043b828d","code":"client:insufficient_funds"}}'
     http_version: 
-  recorded_at: Wed, 22 Nov 2017 10:29:56 GMT
+  recorded_at: Sat, 25 Nov 2017 12:29:38 GMT
 recorded_with: VCR 3.0.3
