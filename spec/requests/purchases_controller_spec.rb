@@ -85,7 +85,7 @@ RSpec.describe 'users', type: :request do
             {
               product_id: tshirt_1.id,
               token_id: 'OMG:789c6cd5-9f04-4daa-af51-1cbf043b828d',
-              token_value: 10000000000000000000
+              token_value: 10_000_000_000_000_000_000
             }
           end
 
@@ -109,7 +109,8 @@ RSpec.describe 'users', type: :request do
               'code' => 'client:invalid_parameter',
               'description' => 'client:insufficient_funds - The specified balance ' \
                                '(ca342b4b-864f-49dd-8287-a92a0b69c665) does not contain ' \
-                               'enough funds. Available: 0 OMG:789c6cd5-9f04-4daa-af51-1cbf043b828d - Attempted debit: ' \
+                               'enough funds. Available: 0 ' \
+                               'OMG:789c6cd5-9f04-4daa-af51-1cbf043b828d - Attempted debit: ' \
                                '10000000000000000000 OMG:789c6cd5-9f04-4daa-af51-1cbf043b828d',
               'messages' => nil
             )

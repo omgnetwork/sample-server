@@ -17,9 +17,9 @@ class Purchaser
   end
 
   def error
-    @error ||= -> do
+    @error ||= lambda do
       settings if settings.error?
-      "Minted Token ID not found on server" unless minted_token
+      'Minted Token ID not found on server' unless minted_token
       debit? ? debit : credit
     end.call
   end

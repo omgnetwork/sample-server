@@ -28,6 +28,7 @@ paths:
         - BasicAuthorizationHeader: []
       parameters:
         - $ref: "#/components/parameters/BasicAuthorizationHeader"
+        - $ref: "#/components/parameters/IdempotencyHeader"
       requestBody:
         $ref: '#/components/requestBodies/UserBody'
       responses:
@@ -46,6 +47,7 @@ paths:
         - BasicAuthorizationHeader: []
       parameters:
         - $ref: "#/components/parameters/BasicAuthorizationHeader"
+        - $ref: "#/components/parameters/IdempotencyHeader"
       requestBody:
         $ref: '#/components/requestBodies/CredentialBody'
       responses:
@@ -64,6 +66,7 @@ paths:
         - AuthenticatedAuthorizationHeader: []
       parameters:
         - $ref: "#/components/parameters/AuthenticatedAuthorizationHeader"
+        - $ref: "#/components/parameters/IdempotencyHeader"
       responses:
         '200':
           $ref: "#/components/responses/UserResponse"
@@ -80,6 +83,7 @@ paths:
         - BasicAuthorizationHeader: []
       parameters:
         - $ref: "#/components/parameters/BasicAuthorizationHeader"
+        - $ref: "#/components/parameters/IdempotencyHeader"
       responses:
         '200':
           $ref: "#/components/responses/ProductsResponse"
@@ -96,6 +100,7 @@ paths:
         - AuthenticatedAuthorizationHeader: []
       parameters:
         - $ref: "#/components/parameters/AuthenticatedAuthorizationHeader"
+        - $ref: "#/components/parameters/IdempotencyHeader"
       requestBody:
         $ref: '#/components/requestBodies/BuyBody'
       responses:
@@ -395,8 +400,6 @@ components:
                 type: integer
               product_id:
                 type: string
-              idempotency_token:
-                type: string
             required:
               - token_id
               - tokens
@@ -405,7 +408,6 @@ components:
               token_id: "MNT:477aea48-b508-4292-a725-0282b130318b"
               token_value: 530000000000000
               product_id: "wijf-fbancomw-dqwjudb"
-              idempotency_token: "348aea48-b508-4292-a725-0282b130318b"
   parameters:
     # Headers
     BasicAuthorizationHeader:
@@ -420,6 +422,13 @@ components:
       name: Authorization
       description: OMGShop Base64(api_key_id:api_key:user_id:authentication_token)
       required: true
+      schema:
+        type: string
+    IdempotencyHeader:
+      in: header
+      name: Idempotency-Token
+      description: The idempotency token for this request
+      required: false
       schema:
         type: string
   securitySchemes:
