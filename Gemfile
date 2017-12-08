@@ -11,6 +11,7 @@ gem 'omisego', '0.1.2', git: 'ssh://git@phabricator.omisego.io/source/sdk-ruby.g
 gem 'pg'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.4'
+gem 'sentry-raven'
 
 gem 'rubocop', require: false
 
