@@ -1,8 +1,9 @@
 GIT
   remote: ssh://git@phabricator.omisego.io/source/sdk-ruby.git
-  revision: 4a96db47853a68cb23a5ff0e4fca01fbb150b360
+  revision: 146ff34bf59840116aac3037b8a110777d7b55a8
+  tag: v0.9.0
   specs:
-    omisego (0.1.2)
+    omisego (0.9.0)
       faraday (~> 0.13.1)
 
 GEM
@@ -164,6 +165,8 @@ GEM
     ruby-progressbar (1.9.0)
     ruby_dep (1.5.0)
     safe_yaml (1.0.4)
+    sentry-raven (2.7.1)
+      faraday (>= 0.7.6, < 1.0)
     shoulda-matchers (3.1.2)
       activesupport (>= 4.0.0)
     spring (2.0.2)
@@ -202,12 +205,13 @@ DEPENDENCIES
   factory_bot_rails
   listen (>= 3.0.5, < 3.2)
   money-rails
-  omisego (= 0.1.2)!
+  omisego (= 0.9.0)!
   pg
   puma (~> 3.7)
   rails (~> 5.1.4)
   rspec-rails
   rubocop
+  sentry-raven
   shoulda-matchers
   spring
   spring-watcher-listen (~> 2.0.0)
