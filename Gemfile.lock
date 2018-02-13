@@ -1,5 +1,5 @@
 GIT
-  remote: ssh://git@phabricator.omisego.io/source/sdk-ruby.git
+  remote: ssh://git@github.com/omisego/ruby-sdk.git
   revision: 146ff34bf59840116aac3037b8a110777d7b55a8
   tag: v0.9.0
   specs:
