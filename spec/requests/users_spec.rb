@@ -6,7 +6,7 @@ RSpec.describe 'users', type: :request do
   let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGShop #{keys}" } }
 
   before do
-    allow_any_instance_of(User).to receive(:provider_user_id).and_return('OMGShop/test')
+    allow_any_instance_of(User).to receive(:provider_user_id).and_return(ENV['PROVIDER_USER_ID'])
   end
 
   describe '/api/me.get' do
@@ -80,7 +80,7 @@ RSpec.describe 'users', type: :request do
       context 'with user creation succeeding in the Wallet API' do
         let(:params) do
           {
-            email: 'john@example.com',
+            email: 'john01@example.com',
             password: 'password',
             first_name: 'john',
             last_name: 'doe'
@@ -109,7 +109,7 @@ RSpec.describe 'users', type: :request do
         end
 
         it 'creates the user in db' do
-          expect(User.last.email).to eq 'john@example.com'
+          expect(User.last.email).to eq 'john01@example.com'
         end
       end
     end

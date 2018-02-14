@@ -1,7 +1,9 @@
-ENV['OMISEGO_ACCESS_KEY'] = 'replace_with_access_key'
-ENV['OMISEGO_SECRET_KEY'] = 'replace_with_secret_key'
-ENV['OMISEGO_WALLET_URL'] = 'https://example.com'
-ENV['PROVIDER_USER_ID'] = 'user12345678'
+ENV['OMISEGO_ACCESS_KEY'] = 'OMISEGO_ACCESS_KEY'
+ENV['OMISEGO_SECRET_KEY'] = 'OMISEGO_SECRET_KEY'
+ENV['OMISEGO_WALLET_URL'] = 'https://example.com/api'
+
+ENV['PROVIDER_USER_ID'] = 'sample_provider_user_id03'
+ENV['TOKEN_ID'] = 'OMG:e44b1882-87d4-4498-91d2-a5762593a194'
 
 # Base64 Encoded:
-# OMGServer cmVwbGFjZV93aXRoX2FjY2Vzc19rZXk6cmVwbGFjZV93aXRoX3NlY3JldF9rZXk=
+# OMGServer T01JU0VHT19BQ0NFU1NfS0VZOk9NSVNFR09fU0VDUkVUX0tFWQ==
