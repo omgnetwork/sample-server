@@ -1,0 +1,34 @@
+replicaCount: 1
+enabled: false
+
+postgresqlDb: "omgshop"
+postgresqlUser: "omgshop"
+postgresqlPassword: ""
+postgresqlSuPassword: ""
+
+image:
+  repository: postgres
+  tag: 9.6
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 5432
+  livenessProbe:
+    initialDelaySeconds: 60
+    timeoutSeconds: 5
+    failureThreshold: 6
+  readinessProbe:
+    initialDelaySeconds: 5
+    timeoutSeconds: 3
+    failureThreshold: 5
+
+persistentVolume:
+  enabled: true
+  accessMode: ReadWriteOnce
+  size: 10Gi
+
+resources: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
