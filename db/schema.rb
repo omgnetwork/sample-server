@@ -58,7 +58,8 @@ ActiveRecord::Schema.define(version: 20_171_125_120_919) do
     t.decimal 'token_value', precision: 81
     t.string 'token_symbol'
     t.string 'idempotency_token', null: false
-    t.index ['idempotency_token'], name: 'index_purchases_on_idempotency_token', unique: true
+    t.index ['idempotency_token'], name: 'index_purchases_on_idempotency_token',
+                                   unique: true
     t.index ['product_id'], name: 'index_purchases_on_product_id'
     t.index %w[user_id product_id], name: 'index_purchases_on_user_id_and_product_id'
     t.index ['user_id'], name: 'index_purchases_on_user_id'

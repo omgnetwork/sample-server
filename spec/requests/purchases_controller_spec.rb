@@ -39,7 +39,7 @@ RSpec.describe 'users', type: :request do
           let(:params) do
             {
               product_id: tshirt_1.id,
-              token_id: 'ETH:1f48738e-6336-45e5-9695-306b9b53e459',
+              token_id: ENV['TOKEN_ID'],
               token_value: 0
             }
           end
@@ -84,7 +84,7 @@ RSpec.describe 'users', type: :request do
           let(:params) do
             {
               product_id: tshirt_1.id,
-              token_id: 'OMG:789c6cd5-9f04-4daa-af51-1cbf043b828d',
+              token_id: ENV['TOKEN_ID'],
               token_value: 10_000_000_000_000_000_000
             }
           end
@@ -108,11 +108,10 @@ RSpec.describe 'users', type: :request do
               'object' => 'error',
               'code' => 'client:invalid_parameter',
               'description' => 'client:insufficient_funds - The specified balance ' \
-                               '(ca342b4b-864f-49dd-8287-a92a0b69c665) does not contain ' \
-                               'enough funds. Available: 0 ' \
-                               'OMG:789c6cd5-9f04-4daa-af51-1cbf043b828d - Attempted debit: ' \
-                               '10000000000000000000 OMG:789c6cd5-9f04-4daa-af51-1cbf043b828d',
-              'messages' => nil
+                               '(8cc82745-6eff-4644-8599-4bbc47ee919f) does not contain ' \
+                               'enough funds. Available: 190000 ' \
+                               "#{ENV['TOKEN_ID']} - Attempted debit: " \
+                               "10000000000000000000 #{ENV['TOKEN_ID']}", 'messages' => nil
             )
           end
 
@@ -136,7 +135,7 @@ RSpec.describe 'users', type: :request do
           let(:params) do
             {
               product_id: tshirt_1.id,
-              token_id: 'ETH:1f48738e-6336-45e5-9695-306b9b53e459',
+              token_id: ENV['TOKEN_ID'],
               token_value: 10
             }
           end

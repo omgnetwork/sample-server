@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://example.com/login
+    uri: https://example.com/api/login
     body:
       encoding: UTF-8
       string: '{"provider_user_id":"OMGShop/test"}'
@@ -10,7 +10,7 @@ http_interactions:
       User-Agent:
       - Faraday v0.13.1
       Authorization:
-      - OMGServer cmVwbGFjZV93aXRoX2FjY2Vzc19rZXk6cmVwbGFjZV93aXRoX3NlY3JldF9rZXk=
+      - OMGServer T01JU0VHT19BQ0NFU1NfS0VZOk9NSVNFR09fU0VDUkVUX0tFWQ==
       Accept:
       - application/vnd.omisego.v1+json
       Content-Type:
@@ -25,22 +25,22 @@ http_interactions:
       Server:
       - nginx/1.13.5
       Date:
-      - Sat, 25 Nov 2017 11:54:34 GMT
+      - Tue, 13 Feb 2018 10:18:04 GMT
       Content-Type:
       - application/vnd.omisego.v1+json; charset=utf-8
       Content-Length:
-      - '140'
+      - '102'
       Connection:
       - keep-alive
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - cs3l00nj5c857blvv5nin8v1u8b08ciu
+      - a66mmtuirkdt1qqtjkk8vls7cpalpomk
       Strict-Transport-Security:
       - max-age=15724800; includeSubDomains;
     body:
       encoding: UTF-8
-      string: '{"version":"1","success":true,"data":{"object":"authentication_token","authentication_token":"pi_F3lM926VHuNUItFVoNsE_XjRBHdM0eD6Vx-Ie_N4"}}'
+      string: '{"version":"1","success":true,"data":{"object":"authentication_token","authentication_token":"error"}}'
     http_version: 
-  recorded_at: Sat, 25 Nov 2017 11:54:27 GMT
+  recorded_at: Tue, 13 Feb 2018 10:17:55 GMT
 recorded_with: VCR 3.0.3
