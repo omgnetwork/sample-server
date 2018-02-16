@@ -1,0 +1,46 @@
+replicaCount: 1
+
+omgshopDbUrl: ""
+omgshopSecretKey: ""
+omgshopSentryDsn: ""
+
+ewalletUrl: ""
+ewalletAccessKey: ""
+ewalletSecretKey: ""
+
+image:
+  repository: gcr.io/omise-go/omgshop
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 4000
+  livenessProbe:
+    initialDelaySeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 5
+  readinessProbe:
+    initialDelaySeconds: 5
+    timeoutSeconds: 3
+    failureThreshold: 5
+
+ingress:
+  enabled: false
+  annotations: {}
+  path: /
+  hosts:
+    - example.local
+  tls: []
+
+resources: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+postgresql:
+  enabled: false
+  postgresqlDb: "omgshop"
+  postgresqlUser: "omgshop"
+  postgresqlPassword: ""
+  postgresqlSuPassword: ""

@@ -1,0 +1,101 @@
+{{- if .Values.enabled -}}
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "postgresql.fullname" . }}
+  labels:
+    app: {{ template "postgresql.name" . }}
+    chart: {{ template "postgresql.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "postgresql.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "postgresql.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "postgresql.fullname" . }}
+                  key: postgresql-su-password
+            - name: POSTGRES_APP_USER
+              value: {{ .Values.postgresqlUser | quote }}
+            - name: POSTGRES_APP_DB
+              value: {{ .Values.postgresqlDb | quote }}
+            - name: POSTGRES_APP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "postgresql.fullname" . }}
+                  key: postgresql-password
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+          ports:
+            - name: postgresql
+              containerPort: 5432
+              protocol: TCP
+          livenessProbe:
+            exec:
+              command:
+                - sh
+                - "-c"
+                - "exec pg_isready --host $POD_IP"
+            initialDelaySeconds: {{ .Values.service.livenessProbe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.service.livenessProbe.timeoutSeconds }}
+            failureThreshold: {{ .Values.service.livenessProbe.failureThreshold }}
+          readinessProbe:
+            exec:
+              command:
+                - sh
+                - "-c"
+                - "exec pg_isready --host $POD_IP"
+            initialDelaySeconds: {{ .Values.service.readinessProbe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.service.readinessProbe.timeoutSeconds }}
+            failureThreshold: {{ .Values.service.readinessProbe.failureThreshold }}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgresql-pgdata
+            - mountPath: /docker-entrypoint-initdb.d
+              name: postgresql-pginit
+              readOnly: true
+          resources:
+{{ toYaml .Values.resources | trim | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | trim | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | trim | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | trim | indent 8 }}
+    {{- end }}
+      volumes:
+        - name: postgresql-pgdata
+        {{- if .Values.persistentVolume.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ template "postgresql.fullname" . }}
+        {{- else }}
+            emptyDir: {}
+        {{- end }}
+        - name: postgresql-pginit
+          configMap:
+            name: {{ template "postgresql.fullname" . }}
+{{- end -}}
