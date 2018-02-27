@@ -1,7 +1,7 @@
 # README
 
-OMGShop is a web API built with Ruby on Rails and acting as a sample provider's backend application for the OmiseGO Wallet.
+OMGShop is a web API built with Ruby on Rails and acting as a sample provider's backend application for the [OmiseGO eWallet](https://github.com/omisego/ewallet).
 
 # License
 
-The OmiseGO eWallet is released under the [Apache License](https://www.apache.org/licenses/LICENSE-2.0).
+The Ruby Sample Server is released under the [Apache License](https://www.apache.org/licenses/LICENSE-2.0).
