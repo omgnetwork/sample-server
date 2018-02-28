@@ -8,22 +8,22 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Product.create!(
-  name: 'OmiseGO T-Shirt',
-  description: 'An amazing t-shirt!',
+  name: 'Grey T-Shirt',
+  description: 'An amazing grey t-shirt!',
   price: Money.new(98_500, 'THB'),
-  image_url: 'https://image.ibb.co/cyfcfm/tshirt_sample_3x.png'
+  image_url: 'https://image.ibb.co/kXoGtH/thsirt_grey.jpg'
 )
 
 Product.create!(
-  name: 'OmiseGO Hoodie',
-  description: 'An amazing hoodie!',
+  name: 'Navy T-Shirt',
+  description: 'An amazing navy t-shirt!',
   price: Money.new(15_500, 'THB'),
-  image_url: 'https://image.ibb.co/cyfcfm/tshirt_sample_3x.png'
+  image_url: 'https://image.ibb.co/dVjBSc/tshirt_navy.jpg'
 )
 
 Product.create!(
-  name: 'OmiseGO Hat',
-  description: 'An amazing hat!',
+  name: 'Blue T-Shirt',
+  description: 'An amazing blue t-shirt!',
   price: Money.new(45_000, 'THB'),
-  image_url: 'https://image.ibb.co/cyfcfm/tshirt_sample_3x.png'
+  image_url: 'https://image.ibb.co/cot5nc/tshirt_blue.jpg'
 )
