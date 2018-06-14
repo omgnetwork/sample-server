@@ -37,7 +37,7 @@ spec:
                 secretKeyRef:
                   name: {{ template "omgshop.fullname" . }}
                   key: omgshop-secret-key
-            - name: OMISEGO_WALLET_URL
+            - name: OMISEGO_EWALLET_URL
               value: {{ .Values.ewalletUrl | quote }}
             - name: OMISEGO_ACCESS_KEY
               value: {{ .Values.ewalletAccessKey | quote }}

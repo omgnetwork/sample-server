@@ -23,8 +23,7 @@ ActiveRecord::Schema.define(version: 20_171_125_120_919) do
     t.datetime 'updated_at', null: false
     t.string 'omisego_authentication_token'
     t.index ['api_key_id'], name: 'index_access_tokens_on_api_key_id'
-    t.index %w[user_id api_key_id], name: 'index_access_tokens_on_user_id_and_api_key_id',
-                                    unique: true
+    t.index %w[user_id api_key_id], name: 'index_access_tokens_on_user_id_and_api_key_id', unique: true
     t.index ['user_id'], name: 'index_access_tokens_on_user_id'
   end
 
@@ -58,8 +57,7 @@ ActiveRecord::Schema.define(version: 20_171_125_120_919) do
     t.decimal 'token_value', precision: 81
     t.string 'token_symbol'
     t.string 'idempotency_token', null: false
-    t.index ['idempotency_token'], name: 'index_purchases_on_idempotency_token',
-                                   unique: true
+    t.index ['idempotency_token'], name: 'index_purchases_on_idempotency_token', unique: true
     t.index ['product_id'], name: 'index_purchases_on_product_id'
     t.index %w[user_id product_id], name: 'index_purchases_on_user_id_and_product_id'
     t.index ['user_id'], name: 'index_purchases_on_user_id'

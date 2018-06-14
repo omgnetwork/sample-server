@@ -2,15 +2,15 @@
 http_interactions:
 - request:
     method: post
-    uri: https://example.com/api/user.create
+    uri: http://localhost:4000/admin/api/user.create
     body:
       encoding: UTF-8
-      string: '{"provider_user_id":"OMGShop/test","username":"john@example.com","metadata":{"email":"john@example.com","first_name":"john","last_name":"doe"}}'
+      string: '{"provider_user_id":"provider_user_id1346","username":"john@example.com_provider_user_id1346","metadata":{"email":"john@example.com","first_name":"john","last_name":"doe"}}'
     headers:
       User-Agent:
       - Faraday v0.13.1
       Authorization:
-      - OMGServer T01JU0VHT19BQ0NFU1NfS0VZOk9NSVNFR09fU0VDUkVUX0tFWQ==
+      - OMGProvider Mm5aZzUtVnNXMzl2aXpyQVZBOWVqQmo0XzFtODA4MzNFNlNESlJPbmlpWTp6M01Ya2tkbkNhMnh4bzVNb2pQeEZiS3dUdXNMaTluVHVjWFp3TDlHMGtR
       Accept:
       - application/vnd.omisego.v1+json
       Content-Type:
@@ -23,25 +23,29 @@ http_interactions:
       message: OK
     headers:
       Server:
-      - nginx/1.13.5
+      - Cowboy
       Date:
-      - Tue, 13 Feb 2018 10:18:13 GMT
+      - Thu, 14 Jun 2018 09:40:12 GMT
+      Content-Length:
+      - '216'
       Content-Type:
       - application/json; charset=utf-8
-      Content-Length:
-      - '217'
-      Connection:
-      - keep-alive
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - b9kkoij5cvu1smhtncohn0ljk9f171r3
-      Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains;
+      - 2krvqpfj1njhk4v4as0026t1
+      Vary:
+      - Origin
+      Access-Control-Allow-Origin:
+      - 'null'
+      Access-Control-Expose-Headers:
+      - ''
+      Access-Control-Allow-Credentials:
+      - 'true'
     body:
       encoding: UTF-8
       string: '{"version":"1","success":false,"data":{"object":"error","messages":{"provider_user_id":[null]},"description":"Invalid
-        parameter provided. `provider_user_id` has already been taken.","code":"client:invalid_parameter"}}'
+        parameter provided `provider_user_id` has already been taken.","code":"client:invalid_parameter"}}'
     http_version: 
-  recorded_at: Tue, 13 Feb 2018 10:18:04 GMT
+  recorded_at: Thu, 14 Jun 2018 09:40:13 GMT
 recorded_with: VCR 3.0.3

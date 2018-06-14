@@ -27,7 +27,7 @@ class Signup
   def omisego_params
     {
       provider_user_id: user.provider_user_id,
-      username: user.email,
+      username: "#{user.email}_#{user.provider_user_id}",
       metadata: {
         email: user.email,
         first_name: user.first_name,

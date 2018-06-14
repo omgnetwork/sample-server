@@ -1,9 +1,7 @@
-GIT
-  remote: ssh://git@github.com/omisego/ruby-sdk.git
-  revision: 989464ad7770da2944608aa1e89128050e7415d9
-  tag: v0.9.1
+PATH
+  remote: ../ruby-sdk
   specs:
-    omisego (0.9.1)
+    omisego (0.10.0)
       faraday (~> 0.13.1)
 
 GEM
@@ -205,7 +203,7 @@ DEPENDENCIES
   factory_bot_rails
   listen (>= 3.0.5, < 3.2)
   money-rails
-  omisego (= 0.9.1)!
+  omisego!
   pg
   puma (~> 3.7)
   rails (~> 5.1.4)
@@ -220,4 +218,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.16.0
+   1.16.2

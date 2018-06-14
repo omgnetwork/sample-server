@@ -104,15 +104,9 @@ RSpec.describe 'users', type: :request do
           end
 
           it "receives a json with the 'data' root key" do
-            expect(json_body['data']).to eq(
-              'object' => 'error',
-              'code' => 'client:invalid_parameter',
-              'description' => 'client:insufficient_funds - The specified balance ' \
-                               '(8cc82745-6eff-4644-8599-4bbc47ee919f) does not contain ' \
-                               'enough funds. Available: 190000 ' \
-                               "#{ENV['TOKEN_ID']} - Attempted debit: " \
-                               "10000000000000000000 #{ENV['TOKEN_ID']}", 'messages' => nil
-            )
+            expect(json_body['data']['object']).to eq('error')
+            expect(json_body['data']['code']).to eq('client:invalid_parameter')
+            expect(json_body['data']['description']).to include('transaction:insufficient_funds')
           end
 
           it 'inserts the purchase' do

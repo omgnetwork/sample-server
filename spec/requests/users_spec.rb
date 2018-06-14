@@ -5,10 +5,6 @@ RSpec.describe 'users', type: :request do
   let(:keys) { Base64.encode64("#{api_key.id}:#{api_key.key}") }
   let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGShop #{keys}" } }
 
-  before do
-    allow_any_instance_of(User).to receive(:provider_user_id).and_return(ENV['PROVIDER_USER_ID'])
-  end
-
   describe '/api/me.get' do
     include_examples 'client auth', '/api/me.get'
     include_examples 'user auth', '/api/me.get'
@@ -57,6 +53,10 @@ RSpec.describe 'users', type: :request do
       let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGShop #{keys}" } }
 
       context 'with user creation failing in the Wallet API' do
+        before do
+          allow_any_instance_of(User).to receive(:provider_user_id).and_return(ENV['PROVIDER_USER_ID'])
+        end
+
         let(:params) do
           {
             email: 'john@example.com',
@@ -110,6 +110,26 @@ RSpec.describe 'users', type: :request do
 
         it 'creates the user in db' do
           expect(User.last.email).to eq 'john01@example.com'
+        end
+      end
+
+      context 'when attempting to create a user with an already existing email' do
+        let(:params) do
+          {
+            email: 'john01@example.com',
+            password: 'password',
+            first_name: 'john',
+            last_name: 'doe'
+          }
+        end
+
+        it 'returns an error' do
+          VCR.use_cassette('user/authenticated/signup_duplicate') do
+            post '/api/signup', headers: headers, params: params
+            expect(json_body['success']).to eq true
+            post '/api/signup', headers: headers, params: params
+            expect(json_body['success']).to eq false
+          end
         end
       end
     end
