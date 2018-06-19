@@ -4,4 +4,5 @@ rvm:
 before_install:
   - gem install bundler -v 1.15.4
 script:
+  - RAILS_ENV=test bin/rails db:create && bin/rails db:migrate
   - bundle exec rubocop && bundle exec rspec
