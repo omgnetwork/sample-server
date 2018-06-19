@@ -8,3 +8,6 @@ Metrics/MethodLength:
   Max: 23
 Metrics/AbcSize:
   Enabled: false
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
