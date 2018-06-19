@@ -2,15 +2,15 @@
 http_interactions:
 - request:
     method: post
-    uri: https://example.com/api/user.create
+    uri: http://localhost:4000/admin/api/user.create
     body:
       encoding: UTF-8
-      string: '{"provider_user_id":"sample_provider_user_id03","username":"john01@example.com","metadata":{"email":"john01@example.com","first_name":"john","last_name":"doe"}}'
+      string: '{"provider_user_id":"1f9ccf6a-3edd-4e19-8243-98ce88219baf","username":"john01@example.com_1f9ccf6a-3edd-4e19-8243-98ce88219baf","metadata":{"email":"john01@example.com","first_name":"john","last_name":"doe"}}'
     headers:
       User-Agent:
       - Faraday v0.13.1
       Authorization:
-      - OMGServer T01JU0VHT19BQ0NFU1NfS0VZOk9NSVNFR09fU0VDUkVUX0tFWQ==
+      - OMGProvider QUNDRVNTX0tFWTpTRUNSRVRfS0VZ
       Accept:
       - application/vnd.omisego.v1+json
       Content-Type:
@@ -23,37 +23,41 @@ http_interactions:
       message: OK
     headers:
       Server:
-      - nginx/1.13.5
+      - Cowboy
       Date:
-      - Tue, 13 Feb 2018 10:50:23 GMT
+      - Thu, 14 Jun 2018 09:40:12 GMT
+      Content-Length:
+      - '542'
       Content-Type:
       - application/vnd.omisego.v1+json; charset=utf-8
-      Content-Length:
-      - '258'
-      Connection:
-      - keep-alive
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - ar1jchu6su2h4keaa6md0gv96ao0nstt
-      Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains;
+      - 2krvqpg9v7j24u490c0026u1
+      Vary:
+      - Origin
+      Access-Control-Allow-Origin:
+      - 'null'
+      Access-Control-Expose-Headers:
+      - ''
+      Access-Control-Allow-Credentials:
+      - 'true'
     body:
       encoding: UTF-8
-      string: '{"version":"1","success":true,"data":{"username":"john01@example.com","provider_user_id":"sample_provider_user_id03","object":"user","metadata":{"last_name":"doe","first_name":"john","email":"john01@example.com"},"id":"6f23473a-0ec0-4acf-80cb-b861edddb374"}}'
-    http_version:
-  recorded_at: Tue, 13 Feb 2018 10:50:13 GMT
+      string: '{"version":"1","success":true,"data":{"username":"john01@example.com_1f9ccf6a-3edd-4e19-8243-98ce88219baf","updated_at":"2018-06-14T09:40:13.475680Z","socket_topic":"user:usr_01cfytndh3zfcbryp32ra6bcjm","provider_user_id":"1f9ccf6a-3edd-4e19-8243-98ce88219baf","object":"user","metadata":{"last_name":"doe","first_name":"john","email":"john01@example.com"},"id":"usr_01cfytndh3zfcbryp32ra6bcjm","encrypted_metadata":{},"email":null,"created_at":"2018-06-14T09:40:13.475672Z","avatar":{"thumb":null,"small":null,"original":null,"large":null}}}'
+    http_version: 
+  recorded_at: Thu, 14 Jun 2018 09:40:13 GMT
 - request:
     method: post
-    uri: https://example.com/api/login
+    uri: http://localhost:4000/admin/api/user.login
     body:
       encoding: UTF-8
-      string: '{"provider_user_id":"sample_provider_user_id03"}'
+      string: '{"provider_user_id":"1f9ccf6a-3edd-4e19-8243-98ce88219baf"}'
     headers:
       User-Agent:
       - Faraday v0.13.1
       Authorization:
-      - OMGServer T01JU0VHT19BQ0NFU1NfS0VZOk9NSVNFR09fU0VDUkVUX0tFWQ==
+      - OMGProvider QUNDRVNTX0tFWTpTRUNSRVRfS0VZ
       Accept:
       - application/vnd.omisego.v1+json
       Content-Type:
@@ -66,24 +70,28 @@ http_interactions:
       message: OK
     headers:
       Server:
-      - nginx/1.13.5
+      - Cowboy
       Date:
-      - Tue, 13 Feb 2018 10:50:23 GMT
+      - Thu, 14 Jun 2018 09:40:13 GMT
+      Content-Length:
+      - '140'
       Content-Type:
       - application/vnd.omisego.v1+json; charset=utf-8
-      Content-Length:
-      - '102'
-      Connection:
-      - keep-alive
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - k54b52k9b4vs9hijiab619tst1k10rkf
-      Strict-Transport-Security:
-      - max-age=15724800; includeSubDomains;
+      - 2krvqpgvjen050sp2g0026v1
+      Vary:
+      - Origin
+      Access-Control-Allow-Origin:
+      - 'null'
+      Access-Control-Expose-Headers:
+      - ''
+      Access-Control-Allow-Credentials:
+      - 'true'
     body:
       encoding: UTF-8
-      string: '{"version":"1","success":true,"data":{"object":"authentication_token","authentication_token":"error"}}'
-    http_version:
-  recorded_at: Tue, 13 Feb 2018 10:50:14 GMT
+      string: '{"version":"1","success":true,"data":{"object":"authentication_token","authentication_token":"ic3jPXFRdANLfJy3wqyyg8IdBUVxroEAwjgEPHDnXq8"}}'
+    http_version: 
+  recorded_at: Thu, 14 Jun 2018 09:40:13 GMT
 recorded_with: VCR 3.0.3

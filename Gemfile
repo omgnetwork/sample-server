@@ -7,7 +7,7 @@ end
 
 gem 'bcrypt', '~> 3.1.7'
 gem 'money-rails'
-gem 'omisego', '0.9.1', git: 'ssh://git@github.com/omisego/ruby-sdk.git', tag: 'v0.9.1'
+gem 'omisego', '0.10.0'
 gem 'pg'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.4'

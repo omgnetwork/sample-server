@@ -10,7 +10,7 @@ class Purchaser
   def call
     purchase.user = @user
     return false if settings.error?
-    return false unless minted_token
+    return false unless token
     return false unless purchase.save
 
     !(debit? ? debit.error? : credit.error?)
@@ -19,7 +19,7 @@ class Purchaser
   def error
     @error ||= lambda do
       settings if settings.error?
-      'Minted Token ID not found on server' unless minted_token
+      'Minted Token ID not found on server' unless token
       debit? ? debit : credit
     end.call
   end
@@ -35,21 +35,22 @@ class Purchaser
   end
 
   def settings
-    @minted_tokens ||= OmiseGO::Setting.all
+    @tokens ||= OmiseGO::Setting.all
   end
 
-  def minted_token
-    @minted_token ||= settings.minted_tokens.find do |minted_token|
-      minted_token.id == @token_id
+  def token
+    @token ||= settings.tokens.find do |token|
+      token.id == @token_id
     end
   end
 
   def calculate_points(price_in_cents)
-    price_in_cents / 100 * minted_token.subunit_to_unit
+    price_in_cents / 100 * token.subunit_to_unit
   end
 
   def credit
-    @credit ||= OmiseGO::Balance.credit(
+    @credit ||= OmiseGO::Wallet.credit(
+      account_id: ENV['ACCOUNT_ID'],
       provider_user_id: @user.provider_user_id,
       token_id: @token_id,
       amount: calculate_points(purchase.price.cents),
@@ -58,7 +59,8 @@ class Purchaser
   end
 
   def debit
-    @debit ||= OmiseGO::Balance.debit(
+    @debit ||= OmiseGO::Wallet.debit(
+      account_id: ENV['ACCOUNT_ID'],
       provider_user_id: @user.provider_user_id,
       token_id: @token_id,
       amount: @value,

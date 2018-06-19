@@ -5,7 +5,7 @@ http_interactions:
     uri: http://localhost:4000/admin/api/user.create
     body:
       encoding: UTF-8
-      string: '{"provider_user_id":"00aabbf0-75bd-43a8-9a4a-fbaf57497733","username":"john@doe.com_00aabbf0-75bd-43a8-9a4a-fbaf57497733","metadata":{"email":"john@doe.com","first_name":null,"last_name":null}}'
+      string: '{"provider_user_id":"93301257-d7e0-4766-bf9e-3768a708eb62","username":"john01@example.com_93301257-d7e0-4766-bf9e-3768a708eb62","metadata":{"email":"john01@example.com","first_name":"john","last_name":"doe"}}'
     headers:
       User-Agent:
       - Faraday v0.13.1
@@ -25,15 +25,15 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Thu, 14 Jun 2018 09:40:04 GMT
+      - Thu, 14 Jun 2018 09:40:13 GMT
       Content-Length:
-      - '527'
+      - '542'
       Content-Type:
       - application/vnd.omisego.v1+json; charset=utf-8
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 2krvqp11ld98ki9efo0026k1
+      - 2krvqpi7chbn4h7ffo002701
       Vary:
       - Origin
       Access-Control-Allow-Origin:
@@ -44,15 +44,15 @@ http_interactions:
       - 'true'
     body:
       encoding: UTF-8
-      string: '{"version":"1","success":true,"data":{"username":"john@doe.com_00aabbf0-75bd-43a8-9a4a-fbaf57497733","updated_at":"2018-06-14T09:40:05.358393Z","socket_topic":"user:usr_01cfytn5ke8saxqkxjajsy8v3q","provider_user_id":"00aabbf0-75bd-43a8-9a4a-fbaf57497733","object":"user","metadata":{"last_name":null,"first_name":null,"email":"john@doe.com"},"id":"usr_01cfytn5ke8saxqkxjajsy8v3q","encrypted_metadata":{},"email":null,"created_at":"2018-06-14T09:40:05.358384Z","avatar":{"thumb":null,"small":null,"original":null,"large":null}}}'
+      string: '{"version":"1","success":true,"data":{"username":"john01@example.com_93301257-d7e0-4766-bf9e-3768a708eb62","updated_at":"2018-06-14T09:40:14.502236Z","socket_topic":"user:usr_01cfytneh6dx9204e1xcqqm1bp","provider_user_id":"93301257-d7e0-4766-bf9e-3768a708eb62","object":"user","metadata":{"last_name":"doe","first_name":"john","email":"john01@example.com"},"id":"usr_01cfytneh6dx9204e1xcqqm1bp","encrypted_metadata":{},"email":null,"created_at":"2018-06-14T09:40:14.502229Z","avatar":{"thumb":null,"small":null,"original":null,"large":null}}}'
     http_version: 
-  recorded_at: Thu, 14 Jun 2018 09:40:05 GMT
+  recorded_at: Thu, 14 Jun 2018 09:40:14 GMT
 - request:
     method: post
     uri: http://localhost:4000/admin/api/user.login
     body:
       encoding: UTF-8
-      string: '{"provider_user_id":"00aabbf0-75bd-43a8-9a4a-fbaf57497733"}'
+      string: '{"provider_user_id":"93301257-d7e0-4766-bf9e-3768a708eb62"}'
     headers:
       User-Agent:
       - Faraday v0.13.1
@@ -72,7 +72,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Thu, 14 Jun 2018 09:40:05 GMT
+      - Thu, 14 Jun 2018 09:40:14 GMT
       Content-Length:
       - '140'
       Content-Type:
@@ -80,7 +80,7 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 2krvqp1rhvu0kjo02k0026l1
+      - 2krvqpis6313kp6qa0002711
       Vary:
       - Origin
       Access-Control-Allow-Origin:
@@ -91,15 +91,15 @@ http_interactions:
       - 'true'
     body:
       encoding: UTF-8
-      string: '{"version":"1","success":true,"data":{"object":"authentication_token","authentication_token":"7iKBTTlSn3GkYk_Zy5GVuRo58mkN5E6PdFahXqcET40"}}'
+      string: '{"version":"1","success":true,"data":{"object":"authentication_token","authentication_token":"6UESc8aTonEXAXwkSEwC36EzHS3gTGb09pk2SNdbC-s"}}'
     http_version: 
-  recorded_at: Thu, 14 Jun 2018 09:40:05 GMT
+  recorded_at: Thu, 14 Jun 2018 09:40:14 GMT
 - request:
     method: post
-    uri: http://localhost:4000/admin/api/user.login
+    uri: http://localhost:4000/admin/api/user.create
     body:
       encoding: UTF-8
-      string: '{"provider_user_id":"00aabbf0-75bd-43a8-9a4a-fbaf57497733"}'
+      string: '{"provider_user_id":"93301257-d7e0-4766-bf9e-3768a708eb62","username":"john01@example.com_93301257-d7e0-4766-bf9e-3768a708eb62","metadata":{"email":"john01@example.com","first_name":"john","last_name":"doe"}}'
     headers:
       User-Agent:
       - Faraday v0.13.1
@@ -119,15 +119,15 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Thu, 14 Jun 2018 09:40:05 GMT
+      - Thu, 14 Jun 2018 09:40:14 GMT
       Content-Length:
-      - '140'
+      - '216'
       Content-Type:
-      - application/vnd.omisego.v1+json; charset=utf-8
+      - application/json; charset=utf-8
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 2krvqp2n1g584tg4lk0026m1
+      - 2krvqpjm4mc5ksugbk002721
       Vary:
       - Origin
       Access-Control-Allow-Origin:
@@ -138,7 +138,8 @@ http_interactions:
       - 'true'
     body:
       encoding: UTF-8
-      string: '{"version":"1","success":true,"data":{"object":"authentication_token","authentication_token":"Eht2ON-pOJxV-EH6L3Rh0nkgz5BKMfKoUJqOUIWHVf0"}}'
+      string: '{"version":"1","success":false,"data":{"object":"error","messages":{"provider_user_id":[null]},"description":"Invalid
+        parameter provided `provider_user_id` has already been taken.","code":"client:invalid_parameter"}}'
     http_version: 
-  recorded_at: Thu, 14 Jun 2018 09:40:06 GMT
+  recorded_at: Thu, 14 Jun 2018 09:40:15 GMT
 recorded_with: VCR 3.0.3

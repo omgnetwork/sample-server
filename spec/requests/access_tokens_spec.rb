@@ -5,10 +5,6 @@ RSpec.describe 'access tokens', type: :request do
   let(:keys) { Base64.encode64("#{api_key.id}:#{api_key.key}") }
   let(:headers) { { 'HTTP_AUTHORIZATION' => "OMGShop #{keys}" } }
 
-  before do
-    allow_any_instance_of(User).to receive(:provider_user_id).and_return('OMGShop/test')
-  end
-
   describe '/api/login' do
     include_examples 'client auth', '/api/login'
 
@@ -46,8 +42,10 @@ RSpec.describe 'access tokens', type: :request do
         end
 
         before do
-          User.create(params)
           VCR.use_cassette('user/authenticated/login/valid') do
+            post '/api/signup', headers: headers, params: params
+            expect(json_body['success']).to eq true
+
             post '/api/login', headers: headers, params: params
           end
         end
