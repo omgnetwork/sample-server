@@ -94,8 +94,8 @@ podTemplate(
                         ]
                     ])
 
-                    sh("sed -i.bak 's#${imageName}:latest#${imageName}:${gitCommit}#' staging/k8s/sample/sample.yaml")
-                    sh("kubectl apply -f staging/k8s/sample/sample.yaml")
+                    sh("sed -i.bak 's#${imageName}:latest#${imageName}:${gitCommit}#' staging/k8s/sample/deployment.yaml")
+                    sh("kubectl apply -f staging/k8s/sample/deployment.yaml")
                     sh("kubectl rollout status --namespace=staging deployment/sample")
 
                     def podID = getPodID('--namespace=staging -l app=sample')
