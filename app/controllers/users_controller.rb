@@ -9,7 +9,9 @@ class UsersController < ApplicationController
     signup = Signup.new(user_params, api_key)
     user = signup.call
 
-    if user
+    if user == :omisego_error
+      handle_error_with_description(:invalid_parameter, signup.error)
+    elsif user
       login = Login.new(user, api_key)
 
       if (token = login.call)
@@ -18,10 +20,8 @@ class UsersController < ApplicationController
       else
         handle_error_with_description(:invalid_parameter, token.error)
       end
-    elsif signup.error
-      handle_error_with_description(:invalid_parameter, signup.error)
     else
-      handle_error(:invalid_parameter)
+      handle_error_with_description(:invalid_parameter, signup.user.errors.full_messages.join('. '))
     end
   end
 
