@@ -54,7 +54,8 @@ RSpec.describe 'users', type: :request do
 
       context 'with user creation failing in the Wallet API' do
         before do
-          allow_any_instance_of(User).to receive(:provider_user_id).and_return(ENV['PROVIDER_USER_ID'])
+          allow_any_instance_of(User).to receive(:provider_user_id)
+            .and_return(ENV['PROVIDER_USER_ID'])
         end
 
         let(:params) do
