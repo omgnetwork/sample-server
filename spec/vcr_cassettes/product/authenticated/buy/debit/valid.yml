@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://localhost:4000/admin/api/settings.all
+    uri: http://localhost:4000/api/admin/settings.all
     body:
       encoding: UTF-8
       string: "{}"
@@ -50,7 +50,7 @@ http_interactions:
   recorded_at: Thu, 14 Jun 2018 09:40:11 GMT
 - request:
     method: post
-    uri: http://localhost:4000/admin/api/user.debit_wallet
+    uri: http://localhost:4000/api/admin/user.debit_wallet
     body:
       encoding: UTF-8
       string: '{"provider_user_id":"OMGShop/test","user_address":null,"token_id":"tok_BTC_01CFY9374SY1MDF2Z6RNH61F8X","amount":10,"metadata":{},"encrypted_metadata":{},"account_id":"acc_01cfy9350215sgwxs11tqnqw9t","account_address":null}'
