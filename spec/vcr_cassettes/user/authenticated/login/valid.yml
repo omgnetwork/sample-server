@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://localhost:4000/admin/api/user.create
+    uri: http://localhost:4000/api/admin/user.create
     body:
       encoding: UTF-8
       string: '{"provider_user_id":"00aabbf0-75bd-43a8-9a4a-fbaf57497733","username":"john@doe.com_00aabbf0-75bd-43a8-9a4a-fbaf57497733","metadata":{"email":"john@doe.com","first_name":null,"last_name":null}}'
@@ -45,11 +45,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"version":"1","success":true,"data":{"username":"john@doe.com_00aabbf0-75bd-43a8-9a4a-fbaf57497733","updated_at":"2018-06-14T09:40:05.358393Z","socket_topic":"user:usr_01cfytn5ke8saxqkxjajsy8v3q","provider_user_id":"00aabbf0-75bd-43a8-9a4a-fbaf57497733","object":"user","metadata":{"last_name":null,"first_name":null,"email":"john@doe.com"},"id":"usr_01cfytn5ke8saxqkxjajsy8v3q","encrypted_metadata":{},"email":null,"created_at":"2018-06-14T09:40:05.358384Z","avatar":{"thumb":null,"small":null,"original":null,"large":null}}}'
-    http_version: 
+    http_version:
   recorded_at: Thu, 14 Jun 2018 09:40:05 GMT
 - request:
     method: post
-    uri: http://localhost:4000/admin/api/user.login
+    uri: http://localhost:4000/api/admin/user.login
     body:
       encoding: UTF-8
       string: '{"provider_user_id":"00aabbf0-75bd-43a8-9a4a-fbaf57497733"}'
@@ -92,11 +92,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"version":"1","success":true,"data":{"object":"authentication_token","authentication_token":"7iKBTTlSn3GkYk_Zy5GVuRo58mkN5E6PdFahXqcET40"}}'
-    http_version: 
+    http_version:
   recorded_at: Thu, 14 Jun 2018 09:40:05 GMT
 - request:
     method: post
-    uri: http://localhost:4000/admin/api/user.login
+    uri: http://localhost:4000/api/admin/user.login
     body:
       encoding: UTF-8
       string: '{"provider_user_id":"00aabbf0-75bd-43a8-9a4a-fbaf57497733"}'
@@ -139,6 +139,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"version":"1","success":true,"data":{"object":"authentication_token","authentication_token":"Eht2ON-pOJxV-EH6L3Rh0nkgz5BKMfKoUJqOUIWHVf0"}}'
-    http_version: 
+    http_version:
   recorded_at: Thu, 14 Jun 2018 09:40:06 GMT
 recorded_with: VCR 3.0.3

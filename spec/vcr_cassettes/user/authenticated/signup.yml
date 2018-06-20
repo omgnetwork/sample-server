@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: http://localhost:4000/admin/api/user.create
+    uri: http://localhost:4000/api/admin/user.create
     body:
       encoding: UTF-8
       string: '{"provider_user_id":"1f9ccf6a-3edd-4e19-8243-98ce88219baf","username":"john01@example.com_1f9ccf6a-3edd-4e19-8243-98ce88219baf","metadata":{"email":"john01@example.com","first_name":"john","last_name":"doe"}}'
@@ -49,7 +49,7 @@ http_interactions:
   recorded_at: Thu, 14 Jun 2018 09:40:13 GMT
 - request:
     method: post
-    uri: http://localhost:4000/admin/api/user.login
+    uri: http://localhost:4000/api/admin/user.login
     body:
       encoding: UTF-8
       string: '{"provider_user_id":"1f9ccf6a-3edd-4e19-8243-98ce88219baf"}'
