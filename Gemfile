@@ -7,7 +7,7 @@ end
 
 gem 'bcrypt', '~> 3.1.7'
 gem 'money-rails'
-gem 'omisego', '0.10.0'
+gem 'omisego', '0.11.0'
 gem 'pg'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.4'
