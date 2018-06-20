@@ -11,3 +11,9 @@ Metrics/AbcSize:
 AllCops:
   Exclude:
     - 'db/schema.rb'
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+Naming/UncommunicativeMethodParamName:
+  Enabled: false
+Style/MixinUsage:
+  Enabled: false

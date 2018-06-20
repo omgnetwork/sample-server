@@ -10,7 +10,7 @@ gem 'money-rails'
 gem 'omisego', '0.11.0'
 gem 'pg'
 gem 'puma', '~> 3.7'
-gem 'rails', '~> 5.1.4'
+gem 'rails', '~> 5.2.0'
 gem 'sentry-raven'
 
 gem 'rubocop', require: false
