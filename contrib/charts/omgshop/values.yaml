@@ -7,6 +7,7 @@ omgshopSentryDsn: ""
 ewalletUrl: ""
 ewalletAccessKey: ""
 ewalletSecretKey: ""
+ewalletAccountId: ""
 
 image:
   repository: gcr.io/omise-go/omgshop
