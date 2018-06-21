@@ -1,4 +1,3 @@
-ENV['ACCOUNT_ID'] = 'acc_01cfy9350215sgwxs11tqnqw9t' unless Rails.env.prod?
 raise "OmiseGO eWallet master 'ACCOUNT_ID' ENV not set" unless ENV['ACCOUNT_ID']
 
 OmiseGO.configure do |config|
