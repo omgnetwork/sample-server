@@ -7,7 +7,7 @@ RSpec.describe 'users', type: :request do
   let(:tshirt_1) { create(:product, name: 'OmiseGO T-Shirt 1') }
 
   before do
-    allow_any_instance_of(User).to receive(:provider_user_id).and_return('OMGShop/test')
+    allow_any_instance_of(User).to receive(:provider_user_id).and_return(ENV['PROVIDER_USER_ID'])
   end
 
   describe '/api/product.buy' do

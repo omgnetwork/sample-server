@@ -5,7 +5,7 @@ http_interactions:
     uri: http://localhost:4000/api/admin/user.create
     body:
       encoding: UTF-8
-      string: '{"provider_user_id":"93301257-d7e0-4766-bf9e-3768a708eb62","username":"john01@example.com_93301257-d7e0-4766-bf9e-3768a708eb62","metadata":{"email":"john01@example.com","first_name":"john","last_name":"doe"}}'
+      string: '{"provider_user_id":"1edb070a-68cf-447b-bf16-6867eca8bd4e","username":"john01@example.com|1edb070a-68cf-447b-bf16-6867eca8bd4e","metadata":{"email":"john01@example.com","first_name":"john","last_name":"doe"},"encrypted_metadata":{}}'
     headers:
       User-Agent:
       - Faraday v0.13.1
@@ -25,7 +25,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Thu, 14 Jun 2018 09:40:13 GMT
+      - Mon, 02 Jul 2018 10:41:55 GMT
       Content-Length:
       - '542'
       Content-Type:
@@ -33,7 +33,7 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 2krvqpi7chbn4h7ffo002701
+      - 2kuoedj4u468amem0s002u81
       Vary:
       - Origin
       Access-Control-Allow-Origin:
@@ -44,15 +44,15 @@ http_interactions:
       - 'true'
     body:
       encoding: UTF-8
-      string: '{"version":"1","success":true,"data":{"username":"john01@example.com_93301257-d7e0-4766-bf9e-3768a708eb62","updated_at":"2018-06-14T09:40:14.502236Z","socket_topic":"user:usr_01cfytneh6dx9204e1xcqqm1bp","provider_user_id":"93301257-d7e0-4766-bf9e-3768a708eb62","object":"user","metadata":{"last_name":"doe","first_name":"john","email":"john01@example.com"},"id":"usr_01cfytneh6dx9204e1xcqqm1bp","encrypted_metadata":{},"email":null,"created_at":"2018-06-14T09:40:14.502229Z","avatar":{"thumb":null,"small":null,"original":null,"large":null}}}'
+      string: '{"version":"1","success":true,"data":{"username":"john01@example.com|1edb070a-68cf-447b-bf16-6867eca8bd4e","updated_at":"2018-07-02T10:41:56.333630Z","socket_topic":"user:usr_01chd9bbkdp331850k4smn0fvq","provider_user_id":"1edb070a-68cf-447b-bf16-6867eca8bd4e","object":"user","metadata":{"last_name":"doe","first_name":"john","email":"john01@example.com"},"id":"usr_01chd9bbkdp331850k4smn0fvq","encrypted_metadata":{},"email":null,"created_at":"2018-07-02T10:41:56.333623Z","avatar":{"thumb":null,"small":null,"original":null,"large":null}}}'
     http_version: 
-  recorded_at: Thu, 14 Jun 2018 09:40:14 GMT
+  recorded_at: Mon, 02 Jul 2018 10:41:56 GMT
 - request:
     method: post
     uri: http://localhost:4000/api/admin/user.login
     body:
       encoding: UTF-8
-      string: '{"provider_user_id":"93301257-d7e0-4766-bf9e-3768a708eb62"}'
+      string: '{"provider_user_id":"1edb070a-68cf-447b-bf16-6867eca8bd4e"}'
     headers:
       User-Agent:
       - Faraday v0.13.1
@@ -72,7 +72,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Thu, 14 Jun 2018 09:40:14 GMT
+      - Mon, 02 Jul 2018 10:41:55 GMT
       Content-Length:
       - '140'
       Content-Type:
@@ -80,7 +80,7 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 2krvqpis6313kp6qa0002711
+      - 2kuoedjs4ccib4oul4002ua1
       Vary:
       - Origin
       Access-Control-Allow-Origin:
@@ -91,55 +91,7 @@ http_interactions:
       - 'true'
     body:
       encoding: UTF-8
-      string: '{"version":"1","success":true,"data":{"object":"authentication_token","authentication_token":"6UESc8aTonEXAXwkSEwC36EzHS3gTGb09pk2SNdbC-s"}}'
+      string: '{"version":"1","success":true,"data":{"object":"authentication_token","authentication_token":"E0yrMKQwP59gaV9bxfMo8_xfbmd8ye2sBY3ArUgztUw"}}'
     http_version: 
-  recorded_at: Thu, 14 Jun 2018 09:40:14 GMT
-- request:
-    method: post
-    uri: http://localhost:4000/api/admin/user.create
-    body:
-      encoding: UTF-8
-      string: '{"provider_user_id":"93301257-d7e0-4766-bf9e-3768a708eb62","username":"john01@example.com_93301257-d7e0-4766-bf9e-3768a708eb62","metadata":{"email":"john01@example.com","first_name":"john","last_name":"doe"}}'
-    headers:
-      User-Agent:
-      - Faraday v0.13.1
-      Authorization:
-      - OMGProvider QUNDRVNTX0tFWTpTRUNSRVRfS0VZ
-      Accept:
-      - application/vnd.omisego.v1+json
-      Content-Type:
-      - application/vnd.omisego.v1+json
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - Cowboy
-      Date:
-      - Thu, 14 Jun 2018 09:40:14 GMT
-      Content-Length:
-      - '216'
-      Content-Type:
-      - application/json; charset=utf-8
-      Cache-Control:
-      - max-age=0, private, must-revalidate
-      X-Request-Id:
-      - 2krvqpjm4mc5ksugbk002721
-      Vary:
-      - Origin
-      Access-Control-Allow-Origin:
-      - 'null'
-      Access-Control-Expose-Headers:
-      - ''
-      Access-Control-Allow-Credentials:
-      - 'true'
-    body:
-      encoding: UTF-8
-      string: '{"version":"1","success":false,"data":{"object":"error","messages":{"provider_user_id":[null]},"description":"Invalid
-        parameter provided `provider_user_id` has already been taken.","code":"client:invalid_parameter"}}'
-    http_version: 
-  recorded_at: Thu, 14 Jun 2018 09:40:15 GMT
-recorded_with: VCR 3.0.3
+  recorded_at: Mon, 02 Jul 2018 10:41:56 GMT
+recorded_with: VCR 4.0.0

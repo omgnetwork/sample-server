@@ -5,12 +5,12 @@ http_interactions:
     uri: http://localhost:4000/api/admin/user.create
     body:
       encoding: UTF-8
-      string: '{"provider_user_id":"provider_user_id1346","username":"john@example.com_provider_user_id1346","metadata":{"email":"john@example.com","first_name":"john","last_name":"doe"}}'
+      string: '{"provider_user_id":"provider_user_id01","username":"john@example.com|provider_user_id01","metadata":{"email":"john@example.com","first_name":"john","last_name":"doe"},"encrypted_metadata":{}}'
     headers:
       User-Agent:
       - Faraday v0.13.1
       Authorization:
-      - OMGProvider Mm5aZzUtVnNXMzl2aXpyQVZBOWVqQmo0XzFtODA4MzNFNlNESlJPbmlpWTp6M01Ya2tkbkNhMnh4bzVNb2pQeEZiS3dUdXNMaTluVHVjWFp3TDlHMGtR
+      - OMGProvider QUNDRVNTX0tFWTpTRUNSRVRfS0VZ
       Accept:
       - application/vnd.omisego.v1+json
       Content-Type:
@@ -25,15 +25,15 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Thu, 14 Jun 2018 09:40:12 GMT
+      - Mon, 02 Jul 2018 10:41:53 GMT
       Content-Length:
-      - '216'
+      - '236'
       Content-Type:
       - application/json; charset=utf-8
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 2krvqpfj1njhk4v4as0026t1
+      - 2kuoedge7kvobjr8bs002u41
       Vary:
       - Origin
       Access-Control-Allow-Origin:
@@ -44,8 +44,9 @@ http_interactions:
       - 'true'
     body:
       encoding: UTF-8
-      string: '{"version":"1","success":false,"data":{"object":"error","messages":{"provider_user_id":[null]},"description":"Invalid
-        parameter provided `provider_user_id` has already been taken.","code":"client:invalid_parameter"}}'
+      string: '{"version":"1","success":false,"data":{"object":"error","messages":{"provider_user_id":["has
+        already been taken"]},"description":"Invalid parameter provided `provider_user_id`
+        has already been taken.","code":"client:invalid_parameter"}}'
     http_version: 
-  recorded_at: Thu, 14 Jun 2018 09:40:13 GMT
-recorded_with: VCR 3.0.3
+  recorded_at: Mon, 02 Jul 2018 10:41:54 GMT
+recorded_with: VCR 4.0.0
