@@ -5,7 +5,7 @@ http_interactions:
     uri: http://localhost:4000/api/admin/user.create
     body:
       encoding: UTF-8
-      string: '{"provider_user_id":"00aabbf0-75bd-43a8-9a4a-fbaf57497733","username":"john@doe.com_00aabbf0-75bd-43a8-9a4a-fbaf57497733","metadata":{"email":"john@doe.com","first_name":null,"last_name":null}}'
+      string: '{"provider_user_id":"bb552316-7669-444a-a121-09b3281e712c","username":"john@doe.com|bb552316-7669-444a-a121-09b3281e712c","metadata":{"email":"john@doe.com","first_name":null,"last_name":null},"encrypted_metadata":{}}'
     headers:
       User-Agent:
       - Faraday v0.13.1
@@ -25,7 +25,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Thu, 14 Jun 2018 09:40:04 GMT
+      - Mon, 02 Jul 2018 10:41:47 GMT
       Content-Length:
       - '527'
       Content-Type:
@@ -33,7 +33,7 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 2krvqp11ld98ki9efo0026k1
+      - 2kuoed4iofq3a9qcb4002tt1
       Vary:
       - Origin
       Access-Control-Allow-Origin:
@@ -44,15 +44,15 @@ http_interactions:
       - 'true'
     body:
       encoding: UTF-8
-      string: '{"version":"1","success":true,"data":{"username":"john@doe.com_00aabbf0-75bd-43a8-9a4a-fbaf57497733","updated_at":"2018-06-14T09:40:05.358393Z","socket_topic":"user:usr_01cfytn5ke8saxqkxjajsy8v3q","provider_user_id":"00aabbf0-75bd-43a8-9a4a-fbaf57497733","object":"user","metadata":{"last_name":null,"first_name":null,"email":"john@doe.com"},"id":"usr_01cfytn5ke8saxqkxjajsy8v3q","encrypted_metadata":{},"email":null,"created_at":"2018-06-14T09:40:05.358384Z","avatar":{"thumb":null,"small":null,"original":null,"large":null}}}'
-    http_version:
-  recorded_at: Thu, 14 Jun 2018 09:40:05 GMT
+      string: '{"version":"1","success":true,"data":{"username":"john@doe.com|bb552316-7669-444a-a121-09b3281e712c","updated_at":"2018-07-02T10:41:48.503607Z","socket_topic":"user:usr_01chd9b3yqq18vpnpfrdke6e97","provider_user_id":"bb552316-7669-444a-a121-09b3281e712c","object":"user","metadata":{"last_name":null,"first_name":null,"email":"john@doe.com"},"id":"usr_01chd9b3yqq18vpnpfrdke6e97","encrypted_metadata":{},"email":null,"created_at":"2018-07-02T10:41:48.503598Z","avatar":{"thumb":null,"small":null,"original":null,"large":null}}}'
+    http_version: 
+  recorded_at: Mon, 02 Jul 2018 10:41:48 GMT
 - request:
     method: post
     uri: http://localhost:4000/api/admin/user.login
     body:
       encoding: UTF-8
-      string: '{"provider_user_id":"00aabbf0-75bd-43a8-9a4a-fbaf57497733"}'
+      string: '{"provider_user_id":"bb552316-7669-444a-a121-09b3281e712c"}'
     headers:
       User-Agent:
       - Faraday v0.13.1
@@ -72,7 +72,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Thu, 14 Jun 2018 09:40:05 GMT
+      - Mon, 02 Jul 2018 10:41:48 GMT
       Content-Length:
       - '140'
       Content-Type:
@@ -80,7 +80,7 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 2krvqp1rhvu0kjo02k0026l1
+      - 2kuoed58cjijqnc5ik002tu1
       Vary:
       - Origin
       Access-Control-Allow-Origin:
@@ -91,15 +91,15 @@ http_interactions:
       - 'true'
     body:
       encoding: UTF-8
-      string: '{"version":"1","success":true,"data":{"object":"authentication_token","authentication_token":"7iKBTTlSn3GkYk_Zy5GVuRo58mkN5E6PdFahXqcET40"}}'
-    http_version:
-  recorded_at: Thu, 14 Jun 2018 09:40:05 GMT
+      string: '{"version":"1","success":true,"data":{"object":"authentication_token","authentication_token":"GhKFjBTSovbSg1qLhrnbUr5_Pg1C1jV5aUU2FaOqnGk"}}'
+    http_version: 
+  recorded_at: Mon, 02 Jul 2018 10:41:48 GMT
 - request:
     method: post
     uri: http://localhost:4000/api/admin/user.login
     body:
       encoding: UTF-8
-      string: '{"provider_user_id":"00aabbf0-75bd-43a8-9a4a-fbaf57497733"}'
+      string: '{"provider_user_id":"bb552316-7669-444a-a121-09b3281e712c"}'
     headers:
       User-Agent:
       - Faraday v0.13.1
@@ -119,7 +119,7 @@ http_interactions:
       Server:
       - Cowboy
       Date:
-      - Thu, 14 Jun 2018 09:40:05 GMT
+      - Mon, 02 Jul 2018 10:41:48 GMT
       Content-Length:
       - '140'
       Content-Type:
@@ -127,7 +127,7 @@ http_interactions:
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Request-Id:
-      - 2krvqp2n1g584tg4lk0026m1
+      - 2kuoed63osqtrbjov0002tv1
       Vary:
       - Origin
       Access-Control-Allow-Origin:
@@ -138,7 +138,7 @@ http_interactions:
       - 'true'
     body:
       encoding: UTF-8
-      string: '{"version":"1","success":true,"data":{"object":"authentication_token","authentication_token":"Eht2ON-pOJxV-EH6L3Rh0nkgz5BKMfKoUJqOUIWHVf0"}}'
-    http_version:
-  recorded_at: Thu, 14 Jun 2018 09:40:06 GMT
-recorded_with: VCR 3.0.3
+      string: '{"version":"1","success":true,"data":{"object":"authentication_token","authentication_token":"YEkcbQWy8-NTGt446K2XMa5xK5sluVBSFksz5hgsQ5A"}}'
+    http_version: 
+  recorded_at: Mon, 02 Jul 2018 10:41:49 GMT
+recorded_with: VCR 4.0.0
