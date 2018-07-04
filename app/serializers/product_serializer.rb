@@ -10,7 +10,7 @@ class ProductSerializer
       name: @product.name,
       description: @product.description,
       image_url: @product.image_url || '',
-      price: @product.price_satangs,
+      price: @product.price_cents,
       currency: 'THB'
     }
   end

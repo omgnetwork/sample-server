@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  monetize :price_satangs, as: :price
+  monetize :price_cents
 
   validates :name, presence: true
   validates :price, presence: true

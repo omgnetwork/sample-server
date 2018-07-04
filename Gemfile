@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'bcrypt', '~> 3.1.7'
-gem 'money-rails'
+gem 'money-rails', '1.11.0'
 gem 'omisego', '0.12.0'
 gem 'pg'
 gem 'puma', '~> 3.7'

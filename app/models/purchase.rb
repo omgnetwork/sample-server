@@ -5,10 +5,10 @@ class Purchase < ApplicationRecord
   before_save :set_price
 
   store :error
-  monetize :price_satangs, as: :price
+  monetize :price_cents
   enum status: { created: 0, sent: 1, confirmed: 2, rejected: 3 }
 
-  validates :price_satangs, presence: true
+  validates :price_cents, presence: true
   validates :product, presence: true
   validates :user, presence: true
   validates :idempotency_token, presence: true
