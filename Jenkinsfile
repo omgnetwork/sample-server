@@ -43,19 +43,7 @@ podTemplate(
 
             withCredentials([[$class: 'SSHUserPrivateKeyBinding', credentialsId: 'github', keyFileVariable: 'GIT_SSH_KEY']]) {
                 withEnv(["GIT_SSH_CONFIG=${tmpDir}/ssh_config", "IMAGE=${imageName}", "TAG=${gitCommit}"]) {
-                    def habitusPort = random.nextInt(1024) + 8080
-
-                    sh(
-                        """
-                        habitus \
-                            --pretty=false \
-                            --secrets=true \
-                            --binding="${nodeIP}" \
-                            --port="${habitusPort}" \
-                            --build habitus_port="${habitusPort}" \
-                            --build habitus_host="${nodeIP}"
-                        """.stripIndent()
-                    )
+                    sh("docker build ${imageName}:${gitCommit}")
                 }
             }
         }
